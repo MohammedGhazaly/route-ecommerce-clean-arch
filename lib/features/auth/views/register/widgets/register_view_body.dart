@@ -1,9 +1,14 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/data/repos/auth_repo/repo/auth_repo.dart';
 import 'package:route_e_commerce/features/auth/view_model/register/register_cubit.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:route_e_commerce/utils/shared_widgets/custom_snackbar_with_awesome_content.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -24,7 +29,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterCubit registerViewModel = RegisterCubit();
+    RegisterCubit registerViewModel = RegisterCubit(authRepo: injectAuthRepo());
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -169,10 +174,51 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     SizedBox(
                       height: 55.h,
                     ),
-                    CustomAuthButton(
-                      text: "Sign up",
-                      onTapFunction: () {
-                        if (formKey.currentState!.validate()) {}
+                    BlocConsumer<RegisterCubit, RegisterState>(
+                      bloc: registerViewModel,
+                      listener: (context, state) {
+                        if (state is RegisterFailure) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(buildCustomSnackBar(
+                              color: Colors.red,
+                              title: state.errorMessage,
+                              contentType: ContentType.failure,
+                            ));
+                        }
+                        if (state is RegisterSuccess) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(buildCustomSnackBar(
+                              color: Colors.green[900]!,
+                              title: "Account created successfully",
+                              contentType: ContentType.success,
+                            ));
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is RegisterLoading) {
+                          return CustomAuthButton(
+                            isLoading: true,
+                            text: "Sign up",
+                            onTapFunction: () {},
+                          );
+                        } else {
+                          return CustomAuthButton(
+                            isLoading: false,
+                            text: "Sign up",
+                            onTapFunction: () {
+                              if (formKey.currentState!.validate()) {
+                                registerViewModel.register(
+                                    fullName: fullNameController.text,
+                                    phoneNumber: mobileNumberController.text,
+                                    email: emailAddressController.text,
+                                    password: passwordController.text,
+                                    rePassword: confirmPasswordController.text);
+                              }
+                            },
+                          );
+                        }
                       },
                     ),
                     SizedBox(

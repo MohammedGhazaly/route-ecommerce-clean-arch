@@ -6,6 +6,15 @@ import 'package:route_e_commerce/data/models/request_models/register_request_mod
 import 'package:route_e_commerce/data/models/response_model/register_response_model.dart';
 
 class ApiManager {
+  ApiManager._();
+  static ApiManager? _instance;
+  static ApiManager getInstance() {
+    if (_instance == null) {
+      _instance = ApiManager._();
+    }
+    return _instance!;
+  }
+
   Future<RegisterResponseModel> register({
     required String fullName,
     required String phoneNumber,

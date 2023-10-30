@@ -4,8 +4,13 @@ import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CustomAuthButton extends StatelessWidget {
   final String text;
+  final bool isLoading;
   final void Function()? onTapFunction;
-  const CustomAuthButton({super.key, required this.text, this.onTapFunction});
+  const CustomAuthButton(
+      {super.key,
+      required this.text,
+      this.onTapFunction,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +26,16 @@ class CustomAuthButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 20.sp,
-            color: MyColors.darkPrimaryColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Text(
+                text,
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: MyColors.darkPrimaryColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       ),
     );
   }

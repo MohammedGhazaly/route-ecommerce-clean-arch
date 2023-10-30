@@ -1,13 +1,23 @@
+import 'package:route_e_commerce/data/models/response_model/register_error_response_model.dart';
+
 class RegisterResponseModel {
   String? message;
   User? user;
   String? token;
+  RegisterResponseErrorModel? registerResponseErrorModel;
 
-  RegisterResponseModel({this.message, this.user, this.token});
+  RegisterResponseModel(
+      {this.message, this.user, this.token, this.registerResponseErrorModel});
 
   RegisterResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    registerResponseErrorModel = new RegisterResponseErrorModel.fromJson(json);
+
+    //todo => ممكن نعدل فيها برضه
+    // registerResponseErrorModel = json['error'] != null
+    //     ? new RegisterResponseErrorModel.fromJson(json['error'])
+    //     : null;
     token = json['token'];
   }
 
