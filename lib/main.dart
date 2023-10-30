@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/views/root/root_view.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Future.delayed(const Duration(seconds: 3));
+  FlutterNativeSplash.remove();
+
   runApp(const ECommerceApp());
 }
 
@@ -14,7 +20,7 @@ class ECommerceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(430, 932),
+      designSize: const Size(430, 930),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {

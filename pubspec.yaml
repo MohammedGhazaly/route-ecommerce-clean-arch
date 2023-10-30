@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_native_splash: ^2.3.5
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   flutter:
@@ -35,6 +36,10 @@ dependencies:
   flutter_screenutil: ^5.9.0
   readmore: ^2.2.0
   smooth_page_indicator: ^1.1.0
+flutter_native_splash:
+  android: true
+  ios: true
+  background_image: "assets/images/splash_screen.png"
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -63,15 +68,8 @@ flutter:
     - assets/images/items/
     - assets/images/items/2.0x/
     - assets/images/items/3.0x/
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
+    - assets/images/
+
   # fonts:
   #   - family: Schyler
   #     fonts:
