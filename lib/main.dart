@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/views/root/root_view.dart';
+import 'package:route_e_commerce/utils/my_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,14 +29,13 @@ class ECommerceApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
-          theme: ThemeData(
-            useMaterial3: true,
-          ),
-          initialRoute: RootView.routeName,
+          theme: MyTheme.mainTheme,
+          initialRoute: RegisterView.routeName,
           routes: {
             RootView.routeName: (context) => const RootView(),
             ProductDetailsView.routeName: (context) =>
                 const ProductDetailsView(),
+            RegisterView.routeName: (context) => const RegisterView(),
           },
         );
       },
