@@ -1,4 +1,4 @@
-import 'package:route_e_commerce/data/model/response_model/error_model.dart';
+import 'package:route_e_commerce/data/models/response_model/error_model.dart';
 
 class RegisterResponseErrorModel {
   String? statusMsg;

@@ -2,11 +2,11 @@ import "dart:convert";
 
 import "package:http/http.dart" as http;
 import "package:route_e_commerce/data/api/api_constants.dart";
-import "package:route_e_commerce/data/model/request_models/register_request_model.dart";
-import "package:route_e_commerce/data/model/response_model/register_response_model.dart";
+import 'package:route_e_commerce/data/models/request_models/register_request_model.dart';
+import 'package:route_e_commerce/data/models/response_model/register_response_model.dart';
 
 class ApiManager {
-  static Future<RegisterResponseModel> register({
+  Future<RegisterResponseModel> register({
     required String fullName,
     required String phoneNumber,
     required String email,
