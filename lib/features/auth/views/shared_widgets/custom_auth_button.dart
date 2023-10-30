@@ -15,7 +15,7 @@ class CustomAuthButton extends StatelessWidget {
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              15,
+              15.r,
             ),
           ),
         ),

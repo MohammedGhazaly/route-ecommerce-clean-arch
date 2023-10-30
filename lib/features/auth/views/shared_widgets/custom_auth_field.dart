@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CustomAuthField extends StatelessWidget {
   final String fieldName;
