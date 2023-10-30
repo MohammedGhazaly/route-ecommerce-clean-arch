@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/views/home/widgets/category_items.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/views/home/widgets/category_items.dart';
 
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({

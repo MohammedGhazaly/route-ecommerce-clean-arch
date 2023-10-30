@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/views/product_details/product_details_view.dart';
-import 'package:route_e_commerce/views/root/root_view.dart';
+import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
+import 'package:route_e_commerce/features/views/root/root_view.dart';
 
 void main() {
   runApp(const ECommerceApp());

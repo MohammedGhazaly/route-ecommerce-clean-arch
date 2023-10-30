@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/announcement_model.dart';
+import 'package:route_e_commerce/features/views/home/widgets/custom_announdement_banner.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/views/home/widgets/custom_announdement_banner.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AnnouncementsSection extends StatefulWidget {

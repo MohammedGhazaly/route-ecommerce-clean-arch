@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:route_e_commerce/views/home/home_view.dart';
-import 'package:route_e_commerce/views/product_list/product_list_view.dart';
-import 'package:route_e_commerce/views/root/widgets/custom_bottom_navigation_bar.dart';
+import 'package:route_e_commerce/features/views/home/home_view.dart';
+import 'package:route_e_commerce/features/views/product_list/product_list_view.dart';
+import 'package:route_e_commerce/features/views/root/widgets/custom_bottom_navigation_bar.dart';
 
 class RootView extends StatefulWidget {
   static String routeName = "rootView";

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/views/home/widgets/annountcements_section.dart';
+import 'package:route_e_commerce/features/views/home/widgets/categories_section.dart';
+import 'package:route_e_commerce/features/views/home/widgets/home_appliances_section.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/custom_search_with_shopping_cart.dart';
-import 'package:route_e_commerce/views/home/widgets/annountcements_section.dart';
-import 'package:route_e_commerce/views/home/widgets/categories_section.dart';
-import 'package:route_e_commerce/views/home/widgets/home_appliances_section.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

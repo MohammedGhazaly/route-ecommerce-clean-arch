@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/custom_product_details_button.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/views/product_details/widgets/custom_product_details_button.dart';
 
 class ProductDetailsBottomSection extends StatelessWidget {
   const ProductDetailsBottomSection({super.key});

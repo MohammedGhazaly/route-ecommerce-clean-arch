@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_color_widget.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_color_widget.dart';
 
 class ColorsSection extends StatefulWidget {
   final DummyItemModel itemDetails;

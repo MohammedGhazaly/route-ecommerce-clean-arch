@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
+import 'package:route_e_commerce/features/views/product_list/widgets/grid_view_card_item.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/custom_search_with_shopping_cart.dart';
-import 'package:route_e_commerce/views/product_details/product_details_view.dart';
-import 'package:route_e_commerce/views/product_list/widgets/grid_view_card_item.dart';
 
 class ProductListView extends StatelessWidget {
   const ProductListView({super.key});

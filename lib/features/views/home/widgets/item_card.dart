@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/views/home/widgets/item_card_body.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/item_card_header.dart';
-import 'package:route_e_commerce/views/home/widgets/item_card_body.dart';
 
 class ItemCardHome extends StatelessWidget {
   const ItemCardHome({super.key});

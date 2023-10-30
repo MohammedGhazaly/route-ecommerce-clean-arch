@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/item_model.dart';
-import 'package:route_e_commerce/views/product_details/widgets/add_remove_items_widget.dart';
-import 'package:route_e_commerce/views/product_details/widgets/colors_section.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_description.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_details_bottom_section.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_images_slider.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_item_sold_and_rating.dart';
-import 'package:route_e_commerce/views/product_details/widgets/product_name_and_total_price.dart';
-import 'package:route_e_commerce/views/product_details/widgets/size_section.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/add_remove_items_widget.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/colors_section.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_description.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_details_bottom_section.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_images_slider.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_item_sold_and_rating.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/product_name_and_total_price.dart';
+import 'package:route_e_commerce/features/views/product_details/widgets/size_section.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   final DummyItemModel itemDetails;
