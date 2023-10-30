@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/auth/view_model/register/register_cubit.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';
 
@@ -17,12 +18,14 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final emailAddressController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
+    RegisterCubit registerViewModel = RegisterCubit();
+
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -43,7 +46,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Form(
                 autovalidateMode: AutovalidateMode.always,
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -166,7 +169,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     SizedBox(
                       height: 55.h,
                     ),
-                    CustomAuthButton(),
+                    CustomAuthButton(
+                      text: "Sign up",
+                      onTapFunction: () {
+                        if (formKey.currentState!.validate()) {}
+                      },
+                    ),
                     SizedBox(
                       height: 90.h,
                     )

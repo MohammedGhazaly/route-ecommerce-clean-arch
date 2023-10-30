@@ -3,14 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CustomAuthButton extends StatelessWidget {
-  const CustomAuthButton({super.key});
+  final String text;
+  final void Function()? onTapFunction;
+  const CustomAuthButton({super.key, required this.text, this.onTapFunction});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 64.h,
       child: TextButton(
-        onPressed: () {},
+        onPressed: onTapFunction,
         style: TextButton.styleFrom(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
@@ -20,7 +22,7 @@ class CustomAuthButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          "Sign up",
+          text,
           style: TextStyle(
             fontSize: 20.sp,
             color: MyColors.darkPrimaryColor,
