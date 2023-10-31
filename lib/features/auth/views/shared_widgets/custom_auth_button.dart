@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CustomAuthButton extends StatelessWidget {
@@ -27,7 +28,10 @@ class CustomAuthButton extends StatelessWidget {
           ),
         ),
         child: isLoading
-            ? const CircularProgressIndicator()
+            ? LoadingAnimationWidget.inkDrop(
+                color: MyColors.primaryColor,
+                size: 30.sp,
+              )
             : Text(
                 text,
                 style: TextStyle(

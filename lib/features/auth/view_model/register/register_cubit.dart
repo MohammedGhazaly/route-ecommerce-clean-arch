@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:route_e_commerce/data/models/response_model/register_response_model.dart';
-import 'package:route_e_commerce/data/repos/auth_repo/repo/auth_repo.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_model.dart';
+import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
 
 part 'register_state.dart';
 
@@ -21,7 +21,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String rePassword,
   }) async {
     try {
-      print("Inside");
       emit(RegisterLoading());
 
       var response = await authRepo.register(

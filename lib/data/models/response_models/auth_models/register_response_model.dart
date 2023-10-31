@@ -1,4 +1,4 @@
-import 'package:route_e_commerce/data/models/response_model/register_error_response_model.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register_error_response_model.dart';
 
 class RegisterResponseModel {
   String? message;

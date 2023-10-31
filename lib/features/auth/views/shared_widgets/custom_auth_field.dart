@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CustomAuthField extends StatelessWidget {
   final String fieldName;
@@ -37,6 +38,7 @@ class CustomAuthField extends StatelessWidget {
           height: 20.sp,
         ),
         TextFormField(
+          cursorColor: MyColors.primaryColor,
           controller: textEditingController,
           obscureText: isObscure,
           validator: validator,

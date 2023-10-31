@@ -10,11 +10,11 @@ SnackBar buildCustomSnackBar(
     elevation: 0,
     width: double.infinity,
     behavior: SnackBarBehavior.floating,
-    duration: const Duration(seconds: 5),
+    duration: const Duration(seconds: 3),
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
       color: color,
-      titleFontSize: 18,
+      titleFontSize: 16.sp,
       messageFontSize: 12,
       title: title,
       message: "",

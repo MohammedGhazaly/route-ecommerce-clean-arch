@@ -2,8 +2,8 @@ import "dart:convert";
 
 import "package:http/http.dart" as http;
 import "package:route_e_commerce/data/api/api_constants.dart";
-import 'package:route_e_commerce/data/models/request_models/register_request_model.dart';
-import 'package:route_e_commerce/data/models/response_model/register_response_model.dart';
+import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_model.dart';
 
 class ApiManager {
   ApiManager._();
