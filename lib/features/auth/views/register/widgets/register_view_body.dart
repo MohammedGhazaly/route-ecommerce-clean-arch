@@ -3,11 +3,11 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
+import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
 import 'package:route_e_commerce/features/auth/view_model/register/register_cubit.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';
 import "package:flutter_bloc/flutter_bloc.dart";
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:route_e_commerce/utils/shared_widgets/custom_snackbar_with_awesome_content.dart';
 
 class RegisterViewBody extends StatefulWidget {
@@ -29,7 +29,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterCubit registerViewModel = RegisterCubit(authRepo: injectAuthRepo());
+    RegisterCubit registerViewModel =
+        RegisterCubit(registerUseCase: injectRegisterUseCase());
 
     return SafeArea(
       child: SingleChildScrollView(

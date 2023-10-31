@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_model.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
+import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  AuthRepo authRepo;
+  RegisterUseCase registerUseCase;
 
-  RegisterCubit({required this.authRepo}) : super(RegisterInitial());
+  RegisterCubit({required this.registerUseCase}) : super(RegisterInitial());
 
   void register({
     required String fullName,
@@ -23,7 +24,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     try {
       emit(RegisterLoading());
 
-      var response = await authRepo.register(
+      var response = await registerUseCase.invoke(
         fullName: fullName,
         phoneNumber: phoneNumber,
         email: email,
