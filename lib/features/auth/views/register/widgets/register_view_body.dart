@@ -2,7 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
+import 'package:route_e_commerce/domain/di/di.dart';
 import 'package:route_e_commerce/features/auth/view_model/register/register_cubit.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';

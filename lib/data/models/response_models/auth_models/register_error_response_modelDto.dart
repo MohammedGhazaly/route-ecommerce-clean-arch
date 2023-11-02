@@ -3,14 +3,15 @@ import 'package:route_e_commerce/data/models/response_models/auth_models/error_m
 class RegisterResponseErrorModel {
   String? statusMsg;
   String? message;
-  ErrorModel? error;
+  ErrorModelDto? error;
 
   RegisterResponseErrorModel({this.statusMsg, this.message, this.error});
 
   RegisterResponseErrorModel.fromJson(Map<String, dynamic> json) {
     statusMsg = json['statusMsg'];
     message = json['message'];
-    error = json['errors'] != null ? ErrorModel.fromJson(json['errors']) : null;
+    error =
+        json['errors'] != null ? ErrorModelDto.fromJson(json['errors']) : null;
   }
 
   Map<String, dynamic> toJson() {

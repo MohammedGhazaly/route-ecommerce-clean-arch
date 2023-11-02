@@ -1,9 +1,14 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/domain/di/di.dart';
+import 'package:route_e_commerce/features/auth/view_model/login/login_cubit.dart';
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';
+import 'package:route_e_commerce/utils/shared_widgets/custom_snackbar_with_awesome_content.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -29,6 +34,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    LoginCubit loginViewModel = LoginCubit(loginUseCase: injectLoginUseCase());
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -139,12 +145,56 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     SizedBox(
                       height: 60.h,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: CustomAuthButton(
-                        text: "Login",
-                        isLoading: false,
-                      ),
+                    BlocConsumer<LoginCubit, LoginState>(
+                      bloc: loginViewModel,
+                      listener: (context, state) {
+                        if (state is LoginFailure) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(buildCustomSnackBar(
+                              color: Colors.red,
+                              title: state.errorMessage,
+                              contentType: ContentType.failure,
+                            ));
+                        }
+                        if (state is LoginSuccess) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(buildCustomSnackBar(
+                              color: Colors.green[900]!,
+                              title: "Account created successfully",
+                              contentType: ContentType.success,
+                            ));
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is LoginLoading) {
+                          return SizedBox(
+                            width: double.infinity,
+                            child: CustomAuthButton(
+                              isLoading: true,
+                              text: "Login",
+                              onTapFunction: () {},
+                            ),
+                          );
+                        } else {
+                          return SizedBox(
+                            width: double.infinity,
+                            child: CustomAuthButton(
+                              isLoading: false,
+                              text: "Login",
+                              onTapFunction: () {
+                                if (formKey.currentState!.validate()) {
+                                  loginViewModel.login(
+                                    email: emailAddressController.text,
+                                    password: passwordController.text,
+                                  );
+                                }
+                              },
+                            ),
+                          );
+                        }
+                      },
                     ),
                     SizedBox(
                       height: 32.h,
@@ -163,7 +213,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       ),
                     ),
                     SizedBox(
-                      height: 100.h,
+                      height: 90.h,
                     ),
                   ],
                 ),

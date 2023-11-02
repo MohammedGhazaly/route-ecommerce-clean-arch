@@ -1,12 +1,12 @@
-class ErrorModel {
+class ErrorModelDto {
   String? value;
   String? msg;
   String? param;
   String? location;
 
-  ErrorModel({this.value, this.msg, this.param, this.location});
+  ErrorModelDto({this.value, this.msg, this.param, this.location});
 
-  ErrorModel.fromJson(Map<String, dynamic> json) {
+  ErrorModelDto.fromJson(Map<String, dynamic> json) {
     value = json['value'];
     msg = json['msg'];
     param = json['param'];

@@ -4,7 +4,9 @@ import "package:connectivity_plus/connectivity_plus.dart";
 import "package:dartz/dartz.dart";
 import "package:http/http.dart" as http;
 import "package:route_e_commerce/data/api/api_constants.dart";
+import "package:route_e_commerce/data/models/request_models/auth_models/login_request_model.dart";
 import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
+import "package:route_e_commerce/data/models/response_models/auth_models/login_responseDto.dart";
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import "package:route_e_commerce/domain/entity/failures.dart";
 
@@ -53,6 +55,40 @@ class ApiManager {
       }
     } else {
       return Left<Failures, RegisterResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, LoginResponseDto>> login({
+    required String email,
+    required String password,
+  }) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.loginEndPoint);
+
+      LoginRequest registerRequestBody = LoginRequest(
+        email: email,
+        password: password,
+      );
+      http.Response response =
+          await http.post(url, body: registerRequestBody.toJson());
+      var loginResponseModel =
+          LoginResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, LoginResponseDto>(loginResponseModel);
+      } else {
+        return Left<Failures, LoginResponseDto>(
+          ServerFailure(
+            errorMessage: loginResponseModel.error != null
+                ? loginResponseModel.error!.msg
+                : loginResponseModel.message,
+          ),
+        );
+      }
+    } else {
+      return Left<Failures, LoginResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

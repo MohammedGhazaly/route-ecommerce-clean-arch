@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
 import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
 

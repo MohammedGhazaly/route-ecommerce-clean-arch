@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
 import 'package:route_e_commerce/domain/entity/failures.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
@@ -23,5 +22,11 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
         rePassword: rePassword);
+  }
+
+  @override
+  Future<Either<Failures, AuthResultEntity>> login(
+      {required String email, required String password}) {
+    return authRemoteDataSource.login(email: email, password: password);
   }
 }
