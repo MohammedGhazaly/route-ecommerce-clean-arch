@@ -1,4 +1,4 @@
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_model.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/data_source/auth_remote_data_source.dart';
 
@@ -8,7 +8,7 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.authRemoteDataSource});
 
   @override
-  Future<RegisterResponseModel> register(
+  Future<RegisterResponseDto> register(
       {required String fullName,
       required String phoneNumber,
       required String email,

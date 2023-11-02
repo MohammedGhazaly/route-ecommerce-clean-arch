@@ -3,7 +3,7 @@ import "dart:convert";
 import "package:http/http.dart" as http;
 import "package:route_e_commerce/data/api/api_constants.dart";
 import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_model.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 
 class ApiManager {
   ApiManager._();
@@ -15,7 +15,7 @@ class ApiManager {
     return _instance!;
   }
 
-  Future<RegisterResponseModel> register({
+  Future<RegisterResponseDto> register({
     required String fullName,
     required String phoneNumber,
     required String email,
@@ -34,7 +34,7 @@ class ApiManager {
     http.Response response =
         await http.post(url, body: registerRequestBody.toJson());
     var registerResponseModel =
-        RegisterResponseModel.fromJson(jsonDecode(response.body));
+        RegisterResponseDto.fromJson(jsonDecode(response.body));
     return registerResponseModel;
   }
 }
