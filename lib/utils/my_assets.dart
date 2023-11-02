@@ -1,4 +1,5 @@
 class MyAssets {
+  static const String routeLogoBig = "assets/images/route_auth_logo.png";
   // Selected Icons
   static const String selectedHomeIcon = "assets/icons/home_icon_selected.png";
   static const String selectedCategoryIcon =
