@@ -27,6 +27,17 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   bool isConfirmPasswordVisible = false;
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    fullNameController.dispose();
+    mobileNumberController.dispose();
+    emailAddressController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     RegisterCubit registerViewModel =
         RegisterCubit(registerUseCase: injectRegisterUseCase());

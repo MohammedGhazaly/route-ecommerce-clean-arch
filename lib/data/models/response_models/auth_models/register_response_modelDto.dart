@@ -1,5 +1,6 @@
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_error_response_modelDto.dart';
 import 'package:route_e_commerce/data/models/response_models/auth_models/userDto.dart';
+import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
 
 class RegisterResponseDto {
   String? message;
@@ -30,5 +31,9 @@ class RegisterResponseDto {
     }
     data['token'] = this.token;
     return data;
+  }
+
+  AuthResultEntity toAuthResultEntity() {
+    return AuthResultEntity(userEntity: user?.toUserEntity(), token: token);
   }
 }

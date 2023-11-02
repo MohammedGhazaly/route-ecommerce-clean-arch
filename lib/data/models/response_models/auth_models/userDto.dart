@@ -1,3 +1,5 @@
+import 'package:route_e_commerce/domain/entity/user_entity.dart';
+
 class UserDto {
   String? name;
   String? email;
@@ -17,5 +19,9 @@ class UserDto {
     data['email'] = this.email;
     data['role'] = this.role;
     return data;
+  }
+
+  UserEntity toUserEntity() {
+    return UserEntity(email: email, name: name, role: role);
   }
 }

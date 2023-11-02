@@ -1,11 +1,13 @@
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
+import 'package:dartz/dartz.dart';
+import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
+import 'package:route_e_commerce/domain/entity/failures.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
 
 class RegisterUseCase {
   AuthRepo authRepo;
   RegisterUseCase({required this.authRepo});
 
-  Future<RegisterResponseDto> invoke({
+  Future<Either<Failures, AuthResultEntity>> invoke({
     required String fullName,
     required String phoneNumber,
     required String email,

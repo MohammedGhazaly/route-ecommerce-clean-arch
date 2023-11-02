@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/features/auth/views/login/login_view.dart';
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/views/root/root_view.dart';
@@ -30,12 +31,13 @@ class ECommerceApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
           theme: MyTheme.mainTheme,
-          initialRoute: RegisterView.routeName,
+          initialRoute: LoginView.routeName,
           routes: {
             RootView.routeName: (context) => const RootView(),
             ProductDetailsView.routeName: (context) =>
                 const ProductDetailsView(),
             RegisterView.routeName: (context) => const RegisterView(),
+            LoginView.routeName: (context) => const LoginView(),
           },
         );
       },

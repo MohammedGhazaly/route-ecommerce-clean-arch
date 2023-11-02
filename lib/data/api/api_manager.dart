@@ -1,9 +1,12 @@
 import "dart:convert";
 
+import "package:connectivity_plus/connectivity_plus.dart";
+import "package:dartz/dartz.dart";
 import "package:http/http.dart" as http;
 import "package:route_e_commerce/data/api/api_constants.dart";
 import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
+import "package:route_e_commerce/domain/entity/failures.dart";
 
 class ApiManager {
   ApiManager._();
@@ -15,26 +18,42 @@ class ApiManager {
     return _instance!;
   }
 
-  Future<RegisterResponseDto> register({
+  Future<Either<Failures, RegisterResponseDto>> register({
     required String fullName,
     required String phoneNumber,
     required String email,
     required String password,
     required String rePassword,
   }) async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.registerEndPoint);
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.registerEndPoint);
 
-    RegisterRequestModel registerRequestBody = RegisterRequestModel(
-      name: fullName,
-      phone: phoneNumber,
-      email: email,
-      password: password,
-      rePassword: rePassword,
-    );
-    http.Response response =
-        await http.post(url, body: registerRequestBody.toJson());
-    var registerResponseModel =
-        RegisterResponseDto.fromJson(jsonDecode(response.body));
-    return registerResponseModel;
+      RegisterRequestModel registerRequestBody = RegisterRequestModel(
+        name: fullName,
+        phone: phoneNumber,
+        email: email,
+        password: password,
+        rePassword: rePassword,
+      );
+      http.Response response =
+          await http.post(url, body: registerRequestBody.toJson());
+      var registerResponseModel =
+          RegisterResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, RegisterResponseDto>(registerResponseModel);
+      } else {
+        return Left<Failures, RegisterResponseDto>(ServerFailure(
+            errorMessage: registerResponseModel
+                        .registerResponseErrorModel?.error !=
+                    null
+                ? registerResponseModel.registerResponseErrorModel?.error!.msg
+                : registerResponseModel.registerResponseErrorModel!.message));
+      }
+    } else {
+      return Left<Failures, RegisterResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
   }
 }
