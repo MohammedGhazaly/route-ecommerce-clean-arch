@@ -1,5 +1,5 @@
-import 'package:route_e_commerce/data/models/response_models/auth_models/register_error_response_modelDto.dart';
-import 'package:route_e_commerce/data/models/response_models/auth_models/userDto.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register/register_error_response_modelDto.dart';
+import 'package:route_e_commerce/data/models/response_models/auth_models/register/userDto.dart';
 import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
 
 class RegisterResponseDto {
