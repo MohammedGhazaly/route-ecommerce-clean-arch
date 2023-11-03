@@ -1,4 +1,4 @@
-import 'package:route_e_commerce/domain/entity/user_entity.dart';
+import 'package:route_e_commerce/domain/entity/auth_entity/user_entity.dart';
 
 class AuthResultEntity {
   UserEntity? userEntity;

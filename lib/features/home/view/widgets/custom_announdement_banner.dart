@@ -14,10 +14,10 @@ class CustomAnnouncementBanner extends StatelessWidget {
         Image.asset(
           announcement.imagePath,
           width: double.infinity,
-          height: 210.h,
+          height: 215.h,
         ),
         Positioned(
-          top: 25.h,
+          top: 5.h,
           left: announcement.isTextLeft ? 16.w : null,
           right: announcement.isTextLeft ? null : 16.w,
           child: Column(
@@ -35,7 +35,7 @@ class CustomAnnouncementBanner extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 5.h,
+                height: 0.h,
               ),
               Text(
                 announcement.announcementText,
@@ -48,7 +48,7 @@ class CustomAnnouncementBanner extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 5.h,
+                height: 0.h,
               ),
               TextButton(
                 onPressed: () {},

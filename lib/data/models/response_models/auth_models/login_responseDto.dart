@@ -1,6 +1,6 @@
 import 'package:route_e_commerce/data/models/response_models/auth_models/error_modelDto.dart';
 import 'package:route_e_commerce/data/models/response_models/auth_models/userDto.dart';
-import 'package:route_e_commerce/domain/entity/auth_result_entity.dart';
+import 'package:route_e_commerce/domain/entity/auth_entity/auth_result_entity.dart';
 
 class LoginResponseDto {
   String? message;

@@ -1,4 +1,4 @@
-import 'package:route_e_commerce/domain/entity/error_model_entity.dart';
+import 'package:route_e_commerce/domain/entity/auth_entity/error_model_entity.dart';
 
 class RegisterResponseErrorEntity {
   String? statusMsg;

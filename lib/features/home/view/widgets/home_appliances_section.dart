@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/features/views/home/widgets/item_card.dart';
+import 'package:route_e_commerce/features/home/view/widgets/item_card.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class HomeAppliancesSection extends StatelessWidget {

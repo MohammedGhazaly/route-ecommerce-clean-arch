@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/categories_model.dart';
-import 'package:route_e_commerce/features/views/home/widgets/category_item.dart';
+import 'package:route_e_commerce/features/home/view/widgets/category_item.dart';
 
 class CategoriesItems extends StatelessWidget {
   const CategoriesItems({super.key});

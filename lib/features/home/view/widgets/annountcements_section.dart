@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/announcement_model.dart';
-import 'package:route_e_commerce/features/views/home/widgets/custom_announdement_banner.dart';
+import 'package:route_e_commerce/features/home/view/widgets/custom_announdement_banner.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -40,7 +40,7 @@ class _AnnouncementsSectionState extends State<AnnouncementsSection> {
             viewportFraction: 1,
             // enlargeFactor: 0.5,
             clipBehavior: Clip.none,
-            height: 200.h,
+            height: 215.h,
             enableInfiniteScroll: true,
             autoPlay: false,
             // autoPlayInterval: const Duration(seconds: 4),

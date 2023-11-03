@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/features/auth/views/login/login_view.dart';
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
-import 'package:route_e_commerce/features/views/root/root_view.dart';
+import 'package:route_e_commerce/features/root/view/root_view.dart';
 import 'package:route_e_commerce/utils/my_theme.dart';
 
 Future<void> main() async {
@@ -31,9 +31,9 @@ class ECommerceApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
           theme: MyTheme.mainTheme,
-          initialRoute: LoginView.routeName,
+          initialRoute: RootView.routeName,
           routes: {
-            RootView.routeName: (context) => const RootView(),
+            RootView.routeName: (context) => RootView(),
             ProductDetailsView.routeName: (context) =>
                 const ProductDetailsView(),
             RegisterView.routeName: (context) => const RegisterView(),
