@@ -1,3 +1,5 @@
+import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
+
 class CategoryDataDto {
   String? sId;
   String? name;
@@ -32,5 +34,15 @@ class CategoryDataDto {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     return data;
+  }
+
+  CategoryDataEntity toCategoryDataEntity() {
+    return CategoryDataEntity(
+        image: image,
+        createdAt: createdAt,
+        name: name,
+        slug: slug,
+        sId: sId,
+        updatedAt: updatedAt);
   }
 }

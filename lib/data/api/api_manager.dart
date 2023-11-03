@@ -8,6 +8,7 @@ import "package:route_e_commerce/data/models/request_models/auth_models/login_re
 import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
 import "package:route_e_commerce/data/models/response_models/auth_models/login_responseDto.dart";
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
+import "package:route_e_commerce/data/models/response_models/home_models/category_responseDto.dart";
 import "package:route_e_commerce/domain/entity/failures.dart";
 
 class ApiManager {
@@ -68,12 +69,12 @@ class ApiManager {
         connectivityResult == ConnectivityResult.wifi) {
       Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.loginEndPoint);
 
-      LoginRequest registerRequestBody = LoginRequest(
+      LoginRequest loginRequestBody = LoginRequest(
         email: email,
         password: password,
       );
       http.Response response =
-          await http.post(url, body: registerRequestBody.toJson());
+          await http.post(url, body: loginRequestBody.toJson());
       var loginResponseModel =
           LoginResponseDto.fromJson(jsonDecode(response.body));
       if (response.statusCode >= 200 && response.statusCode <= 299) {
@@ -89,6 +90,28 @@ class ApiManager {
       }
     } else {
       return Left<Failures, LoginResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, CategoryResponseDto>> getCategories() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.categoryEndPoint);
+
+      http.Response response = await http.get(url);
+      var categoriesResponseModel =
+          CategoryResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, CategoryResponseDto>(categoriesResponseModel);
+      } else {
+        return Left<Failures, CategoryResponseDto>(
+          ServerFailure(errorMessage: categoriesResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, CategoryResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

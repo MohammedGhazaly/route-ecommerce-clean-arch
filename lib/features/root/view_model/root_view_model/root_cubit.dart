@@ -9,11 +9,11 @@ part 'root_state.dart';
 class RootCubit extends Cubit<RootState> {
   RootCubit() : super(RootInitial());
   int selectedIndex = 0;
-  List<Widget> screens = const [
+  List<Widget> screens = [
     HomeView(),
-    ProductListView(),
-    SizedBox(),
-    SizedBox(),
+    const ProductListView(),
+    const SizedBox(),
+    const SizedBox(),
   ];
 
   void changeBottomNavigationIndex(int newIndex) {

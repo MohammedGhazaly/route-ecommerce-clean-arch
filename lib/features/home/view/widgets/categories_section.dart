@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
 import 'package:route_e_commerce/features/home/view/widgets/category_items.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CategoriesSection extends StatelessWidget {
+  final List<CategoryDataEntity> categories;
   const CategoriesSection({
     super.key,
+    required this.categories,
   });
 
   @override
@@ -40,7 +43,9 @@ class CategoriesSection extends StatelessWidget {
         SizedBox(
           height: 16.h,
         ),
-        CategoriesItems()
+        CategoriesItems(
+          categories: categories,
+        )
       ],
     );
   }
