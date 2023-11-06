@@ -2,14 +2,14 @@ import 'package:route_e_commerce/data/models/response_models/home_models/categor
 import 'package:route_e_commerce/data/models/response_models/home_models/category_meta_dataDto.dart';
 import 'package:route_e_commerce/domain/entity/home_entity/category_entity.dart';
 
-class CategoryResponseDto {
+class CategoryOrBrandResponseDto {
   int? results;
-  CategoryMetaDataDto? metadata;
-  List<CategoryDataDto>? data;
+  CategoryOrBrandMetaDataDto? metadata;
+  List<CategoryOrBrandDataDto>? data;
   String? statusMsg;
   String? message;
 
-  CategoryResponseDto({
+  CategoryOrBrandResponseDto({
     this.results,
     this.metadata,
     this.data,
@@ -17,16 +17,16 @@ class CategoryResponseDto {
     this.message,
   });
 
-  CategoryResponseDto.fromJson(Map<String, dynamic> json) {
+  CategoryOrBrandResponseDto.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     results = json['results'];
     metadata = json['metadata'] != null
-        ? new CategoryMetaDataDto.fromJson(json['metadata'])
+        ? new CategoryOrBrandMetaDataDto.fromJson(json['metadata'])
         : null;
     if (json['data'] != null) {
-      data = <CategoryDataDto>[];
+      data = <CategoryOrBrandDataDto>[];
       json['data'].forEach((v) {
-        data!.add(new CategoryDataDto.fromJson(v));
+        data!.add(new CategoryOrBrandDataDto.fromJson(v));
       });
     }
   }
@@ -43,10 +43,12 @@ class CategoryResponseDto {
     return data;
   }
 
-  CategoryResponseEntity toCategoryResponseEntity() {
-    return CategoryResponseEntity(
+  CategoryOrBrandResponseEntity toCategoryOrBrandsResponseEntity() {
+    return CategoryOrBrandResponseEntity(
       data: data != null
-          ? data!.map((catData) => catData.toCategoryDataEntity()).toList()
+          ? data!
+              .map((catData) => catData.toCategoryOrBrandsResponseDataEntity())
+              .toList()
           : [],
       results: results,
     );

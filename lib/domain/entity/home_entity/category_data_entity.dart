@@ -1,4 +1,4 @@
-class CategoryDataEntity {
+class CategoryOrBrandDataEntity {
   String? sId;
   String? name;
   String? slug;
@@ -6,7 +6,7 @@ class CategoryDataEntity {
   String? createdAt;
   String? updatedAt;
 
-  CategoryDataEntity(
+  CategoryOrBrandDataEntity(
       {this.sId,
       this.name,
       this.slug,

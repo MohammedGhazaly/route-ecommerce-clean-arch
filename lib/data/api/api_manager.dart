@@ -94,24 +94,48 @@ class ApiManager {
     }
   }
 
-  Future<Either<Failures, CategoryResponseDto>> getCategories() async {
+  Future<Either<Failures, CategoryOrBrandResponseDto>> getCategories() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.categoryEndPoint);
 
       http.Response response = await http.get(url);
-      var categoriesResponseModel =
-          CategoryResponseDto.fromJson(jsonDecode(response.body));
+      var categoryOrBrandsResponseModel =
+          CategoryOrBrandResponseDto.fromJson(jsonDecode(response.body));
       if (response.statusCode >= 200 && response.statusCode <= 299) {
-        return Right<Failures, CategoryResponseDto>(categoriesResponseModel);
+        return Right<Failures, CategoryOrBrandResponseDto>(
+            categoryOrBrandsResponseModel);
       } else {
-        return Left<Failures, CategoryResponseDto>(
+        return Left<Failures, CategoryOrBrandResponseDto>(
+          ServerFailure(errorMessage: categoryOrBrandsResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, CategoryOrBrandResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, CategoryOrBrandResponseDto>> getBrands() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.brandsEndPoint);
+
+      http.Response response = await http.get(url);
+      var categoriesResponseModel =
+          CategoryOrBrandResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, CategoryOrBrandResponseDto>(
+            categoriesResponseModel);
+      } else {
+        return Left<Failures, CategoryOrBrandResponseDto>(
           ServerFailure(errorMessage: categoriesResponseModel.message),
         );
       }
     } else {
-      return Left<Failures, CategoryResponseDto>(
+      return Left<Failures, CategoryOrBrandResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

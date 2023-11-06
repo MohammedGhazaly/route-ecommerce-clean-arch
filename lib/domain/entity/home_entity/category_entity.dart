@@ -1,10 +1,10 @@
 import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
 import 'package:route_e_commerce/domain/entity/home_entity/category_meta_data.dart';
 
-class CategoryResponseEntity {
+class CategoryOrBrandResponseEntity {
   int? results;
-  CategoryMetaData? metadata;
-  List<CategoryDataEntity>? data;
+  CategoryOrBrandMetaDataEntity? metadata;
+  List<CategoryOrBrandDataEntity>? data;
 
-  CategoryResponseEntity({this.results, this.metadata, this.data});
+  CategoryOrBrandResponseEntity({this.results, this.metadata, this.data});
 }

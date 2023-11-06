@@ -8,7 +8,12 @@ class HomeRepoImpl implements HomeRepo {
   HomeRemoteDataSource homeRemoteDataSource;
   HomeRepoImpl({required this.homeRemoteDataSource});
   @override
-  Future<Either<Failures, CategoryResponseEntity>> getCategories() {
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> getCategories() {
     return homeRemoteDataSource.getCategories();
+  }
+
+  @override
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> getBrands() {
+    return homeRemoteDataSource.getBrands();
   }
 }

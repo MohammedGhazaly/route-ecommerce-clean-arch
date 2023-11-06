@@ -1,11 +1,12 @@
-class CategoryMetaDataDto {
+class CategoryOrBrandMetaDataDto {
   int? currentPage;
   int? numberOfPages;
   int? limit;
 
-  CategoryMetaDataDto({this.currentPage, this.numberOfPages, this.limit});
+  CategoryOrBrandMetaDataDto(
+      {this.currentPage, this.numberOfPages, this.limit});
 
-  CategoryMetaDataDto.fromJson(Map<String, dynamic> json) {
+  CategoryOrBrandMetaDataDto.fromJson(Map<String, dynamic> json) {
     currentPage = json['currentPage'];
     numberOfPages = json['numberOfPages'];
     limit = json['limit'];

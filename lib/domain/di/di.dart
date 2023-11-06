@@ -7,6 +7,7 @@ import 'package:route_e_commerce/domain/repos/auth_repo/data_source/auth_remote_
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
 import 'package:route_e_commerce/domain/repos/home_repo/data_source/home_remote_data_source.dart';
 import 'package:route_e_commerce/domain/repos/home_repo/repo/home_repo.dart';
+import 'package:route_e_commerce/domain/use_cases/get_brands_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_categories_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/login_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
@@ -39,4 +40,8 @@ HomeRemoteDataSource injectHomeRemoteDataSource() {
 
 GetCategoriesUseCase injectGetCateegoriesUseCase() {
   return GetCategoriesUseCase(homeRepo: injectHomeRepo());
+}
+
+GetBrandsUseCase injectGetBrandsUseCase() {
+  return GetBrandsUseCase(homeRepo: injectHomeRepo());
 }

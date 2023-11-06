@@ -1,11 +1,12 @@
-class CategoryMetaData {
+class CategoryOrBrandMetaDataEntity {
   int? currentPage;
   int? numberOfPages;
   int? limit;
 
-  CategoryMetaData({this.currentPage, this.numberOfPages, this.limit});
+  CategoryOrBrandMetaDataEntity(
+      {this.currentPage, this.numberOfPages, this.limit});
 
-  CategoryMetaData.fromJson(Map<String, dynamic> json) {
+  CategoryOrBrandMetaDataEntity.fromJson(Map<String, dynamic> json) {
     currentPage = json['currentPage'];
     numberOfPages = json['numberOfPages'];
     limit = json['limit'];

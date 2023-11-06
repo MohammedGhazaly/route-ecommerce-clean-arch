@@ -1,6 +1,6 @@
 import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
 
-class CategoryDataDto {
+class CategoryOrBrandDataDto {
   String? sId;
   String? name;
   String? slug;
@@ -8,7 +8,7 @@ class CategoryDataDto {
   String? createdAt;
   String? updatedAt;
 
-  CategoryDataDto(
+  CategoryOrBrandDataDto(
       {this.sId,
       this.name,
       this.slug,
@@ -16,7 +16,7 @@ class CategoryDataDto {
       this.createdAt,
       this.updatedAt});
 
-  CategoryDataDto.fromJson(Map<String, dynamic> json) {
+  CategoryOrBrandDataDto.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     slug = json['slug'];
@@ -36,8 +36,8 @@ class CategoryDataDto {
     return data;
   }
 
-  CategoryDataEntity toCategoryDataEntity() {
-    return CategoryDataEntity(
+  CategoryOrBrandDataEntity toCategoryOrBrandsResponseDataEntity() {
+    return CategoryOrBrandDataEntity(
         image: image,
         createdAt: createdAt,
         name: name,

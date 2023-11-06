@@ -4,11 +4,13 @@ import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class CategorieItem extends StatelessWidget {
-  final CategoryDataEntity category;
-  const CategorieItem({
+class CategoryOrBrandItem extends StatelessWidget {
+  final CategoryOrBrandDataEntity category;
+  final String fillOrCover;
+  const CategoryOrBrandItem({
     super.key,
     required this.category,
+    required this.fillOrCover,
   });
 
   @override
@@ -20,13 +22,13 @@ class CategorieItem extends StatelessWidget {
         //   radius: 50.r,
         // ),
         Container(
-            width: 100,
-            height: 100,
+            width: 75,
+            height: 75,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: CachedNetworkImage(
                 imageUrl: category.image!,
-                fit: BoxFit.cover,
+                fit: fillOrCover == "fill" ? BoxFit.fill : BoxFit.cover,
               ),
             )),
         SizedBox(
