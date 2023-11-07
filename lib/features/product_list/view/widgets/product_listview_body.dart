@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/features/product_list/view/widgets/grid_view_card_item.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
-import 'package:route_e_commerce/features/views/product_list/widgets/grid_view_card_item.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/utils/shared_widgets/custom_search_with_shopping_cart.dart';
 
-class ProductListView extends StatelessWidget {
-  const ProductListView({super.key});
+class ProductListViewBody extends StatelessWidget {
+  const ProductListViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +21,23 @@ class ProductListView extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Image.asset(
-              MyAssets.logo,
-              color: MyColors.primaryColor,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  MyAssets.logo,
+                  color: MyColors.primaryColor,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: ImageIcon(
+                    AssetImage(MyAssets.shoppingCart),
+                    size: 36.sp,
+                    color: MyColors.primaryColor,
+                  ),
+                )
+              ],
             ),
-            SizedBox(
-              height: 18.h,
-            ),
-            const CustomSearchWithShoppingCart(),
             SizedBox(
               height: 24.h,
             ),
