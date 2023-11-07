@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
@@ -30,9 +31,11 @@ class _ItemCardHeaderState extends State<ItemCardHeader> {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(15.r),
-          child: Image.asset(
-            widget.image,
+          child: CachedNetworkImage(
+            imageUrl: widget.image,
             fit: BoxFit.cover,
+            width: double.infinity,
+            height: 110.h,
           ),
         ),
         Positioned(

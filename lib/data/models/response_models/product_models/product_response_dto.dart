@@ -1,13 +1,17 @@
 import 'package:route_e_commerce/data/models/response_models/home_models/category_dataDto.dart';
+import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 
 class ProductResponseDto {
-  int? results;
+  num? results;
   MetadataDto? metadata;
   List<ProductDto>? data;
+  String? message;
 
-  ProductResponseDto({this.results, this.metadata, this.data});
+  ProductResponseDto({this.results, this.metadata, this.data, this.message});
 
   ProductResponseDto.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
     results = json['results'];
     metadata = json['metadata'] != null
         ? new MetadataDto.fromJson(json['metadata'])
@@ -18,6 +22,16 @@ class ProductResponseDto {
         data!.add(new ProductDto.fromJson(v));
       });
     }
+  }
+
+  ProductResponseEntity toProductResponseEntity() {
+    return ProductResponseEntity(
+      data: data != null
+          ? data!.map((catData) => catData.toProudctEntity()).toList()
+          : [],
+      results: results,
+      metadata: metadata?.toMetaDataEntity() ?? MetaDataEntity(),
+    );
   }
 }
 
@@ -36,27 +50,36 @@ class MetadataDto {
     limit = json['limit'];
     nextPage = json['nextPage'];
   }
+
+  MetaDataEntity toMetaDataEntity() {
+    return MetaDataEntity(
+      currentPage: currentPage,
+      numberOfPages: numberOfPages,
+      limit: limit,
+      nextPage: nextPage,
+    );
+  }
 }
 
 class ProductDto {
-  int? sold;
+  num? sold;
   List<String>? images;
   List<SubcategoryDto>? subcategory;
-  int? ratingsQuantity;
+  num? ratingsQuantity;
   String? sId;
   String? title;
   String? slug;
   String? description;
-  int? quantity;
-  int? price;
+  num? quantity;
+  num? price;
   String? imageCover;
   CategoryOrBrandDataDto? category;
   CategoryOrBrandDataDto? brand;
-  double? ratingsAverage;
+  num? ratingsAverage;
   String? createdAt;
   String? updatedAt;
   String? id;
-  int? priceAfterDiscount;
+  num? priceAfterDiscount;
 
   ProductDto({
     this.sold,
@@ -108,6 +131,34 @@ class ProductDto {
     id = json['id'];
     priceAfterDiscount = json['priceAfterDiscount'];
   }
+  ProductEntity toProudctEntity() {
+    return ProductEntity(
+      sold: sold,
+      images: images,
+      subcategory: subcategory != null
+          ? subcategory!
+              .map((catData) => catData.toSubCategoryEntity())
+              .toList()
+          : [],
+      ratingsQuantity: ratingsQuantity,
+      sId: sId,
+      title: title,
+      slug: slug,
+      description: description,
+      quantity: quantity,
+      price: price,
+      imageCover: imageCover,
+      category: category?.toCategoryOrBrandsResponseDataEntity() ??
+          CategoryOrBrandDataEntity(),
+      brand: brand?.toCategoryOrBrandsResponseDataEntity() ??
+          CategoryOrBrandDataEntity(),
+      ratingsAverage: ratingsAverage,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      id: id,
+      priceAfterDiscount: priceAfterDiscount,
+    );
+  }
 }
 
 class SubcategoryDto {
@@ -123,5 +174,9 @@ class SubcategoryDto {
     name = json['name'];
     slug = json['slug'];
     category = json['category'];
+  }
+  SubCategoryEntity toSubCategoryEntity() {
+    return SubCategoryEntity(
+        sId: sId, name: name, slug: slug, category: category);
   }
 }

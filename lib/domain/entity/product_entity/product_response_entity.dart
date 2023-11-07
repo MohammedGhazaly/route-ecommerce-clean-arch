@@ -1,7 +1,7 @@
 import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
 
 class ProductResponseEntity {
-  int? results;
+  num? results;
   MetaDataEntity? metadata;
   List<ProductEntity>? data;
 
@@ -19,24 +19,24 @@ class MetaDataEntity {
 }
 
 class ProductEntity {
-  int? sold;
+  num? sold;
   List<String>? images;
   List<SubCategoryEntity>? subcategory;
-  int? ratingsQuantity;
+  num? ratingsQuantity;
   String? sId;
   String? title;
   String? slug;
   String? description;
-  int? quantity;
-  int? price;
+  num? quantity;
+  num? price;
   String? imageCover;
   CategoryOrBrandDataEntity? category;
   CategoryOrBrandDataEntity? brand;
-  double? ratingsAverage;
+  num? ratingsAverage;
   String? createdAt;
   String? updatedAt;
   String? id;
-  int? priceAfterDiscount;
+  num? priceAfterDiscount;
 
   ProductEntity({
     this.sold,

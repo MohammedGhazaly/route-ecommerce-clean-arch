@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class GridViewCardItemBody extends StatelessWidget {
-  final DummyItemModel dummyItemModel;
-  const GridViewCardItemBody({super.key, required this.dummyItemModel});
+  final ProductEntity product;
+  const GridViewCardItemBody({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -17,45 +17,28 @@ class GridViewCardItemBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            dummyItemModel.name,
-            maxLines: 2,
+            product.title ?? "",
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 16.sp,
+              color: MyColors.darkPrimaryColor,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Text(
+            "EGP ${product.price}",
+            maxLines: 1,
             style: TextStyle(
               fontSize: 14.sp,
               color: MyColors.darkPrimaryColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.bold,
             ),
           ),
           Row(
             children: [
               Text(
-                "EGP ${dummyItemModel.newPrice}",
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: MyColors.darkPrimaryColor,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text(
-                "${dummyItemModel.oldPrice} EGP",
-                maxLines: 1,
-                style: TextStyle(
-                  decoration: TextDecoration.lineThrough,
-                  fontSize: 10.sp,
-                  color: MyColors.darkPrimaryColor.withOpacity(0.6),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                "Review (${dummyItemModel.avgRating})",
+                "Review (${product.ratingsAverage})",
                 maxLines: 1,
                 style: TextStyle(
                   fontSize: 12.sp,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/features/product_list/view/widgets/grid_view_card_item_body.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/item_card_header.dart';
 
 class GridViewCardItem extends StatelessWidget {
-  final DummyItemModel dummyItemModel;
-  const GridViewCardItem({super.key, required this.dummyItemModel});
+  final ProductEntity product;
+  const GridViewCardItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,14 @@ class GridViewCardItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ItemCardHeader(
-            image: dummyItemModel.imgUrl[0],
-            isWishlisted: dummyItemModel.isWishlisted,
+            image: product.images![0],
+            isWishlisted: false,
           ),
           SizedBox(
             height: 7.h,
           ),
           GridViewCardItemBody(
-            dummyItemModel: dummyItemModel,
+            product: product,
           )
         ],
       ),

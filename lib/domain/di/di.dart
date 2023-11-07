@@ -3,12 +3,17 @@ import 'package:route_e_commerce/data/repos/auth_repo/data_source/auth_remote_da
 import 'package:route_e_commerce/data/repos/auth_repo/repo/auth_repo_impl.dart';
 import 'package:route_e_commerce/data/repos/home_repo/data_source/home_remote_data_source_impl.dart';
 import 'package:route_e_commerce/data/repos/home_repo/repo/home_repo_impl.dart';
+import 'package:route_e_commerce/data/repos/product_repo/data_source/product_remote_data_source_impl.dart';
+import 'package:route_e_commerce/data/repos/product_repo/repo/product_repo_impl.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/data_source/auth_remote_data_source.dart';
 import 'package:route_e_commerce/domain/repos/auth_repo/repo/auth_repo.dart';
 import 'package:route_e_commerce/domain/repos/home_repo/data_source/home_remote_data_source.dart';
 import 'package:route_e_commerce/domain/repos/home_repo/repo/home_repo.dart';
+import 'package:route_e_commerce/domain/repos/product_repo/data_source/product_remote_data_source.dart';
+import 'package:route_e_commerce/domain/repos/product_repo/repo/product_repo.dart';
 import 'package:route_e_commerce/domain/use_cases/get_brands_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_categories_use_case.dart';
+import 'package:route_e_commerce/domain/use_cases/get_products_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/login_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
 
@@ -44,4 +49,17 @@ GetCategoriesUseCase injectGetCateegoriesUseCase() {
 
 GetBrandsUseCase injectGetBrandsUseCase() {
   return GetBrandsUseCase(homeRepo: injectHomeRepo());
+}
+
+// Product Injections
+ProductRemoteDataSource injectProductDataSource() {
+  return ProductRemoteDataSourceImpl(apiManager: ApiManager.getInstance());
+}
+
+ProductRepo injectProductRepo() {
+  return ProductRepoImpl(productRemoteDataSource: injectProductDataSource());
+}
+
+GetProductsUseCase injectGetProductsUseCase() {
+  return GetProductsUseCase(productRepo: injectProductRepo());
 }

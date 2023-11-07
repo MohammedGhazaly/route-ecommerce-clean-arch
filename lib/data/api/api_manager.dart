@@ -9,6 +9,7 @@ import 'package:route_e_commerce/data/models/request_models/auth_models/register
 import "package:route_e_commerce/data/models/response_models/auth_models/login_responseDto.dart";
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import "package:route_e_commerce/data/models/response_models/home_models/category_responseDto.dart";
+import "package:route_e_commerce/data/models/response_models/product_models/product_response_dto.dart";
 import "package:route_e_commerce/domain/entity/failures.dart";
 
 class ApiManager {
@@ -136,6 +137,28 @@ class ApiManager {
       }
     } else {
       return Left<Failures, CategoryOrBrandResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, ProductResponseDto>> getProducts() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint);
+
+      http.Response response = await http.get(url);
+      var productResponseModel =
+          ProductResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, ProductResponseDto>(productResponseModel);
+      } else {
+        return Left<Failures, ProductResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, ProductResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

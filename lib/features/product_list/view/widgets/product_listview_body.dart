@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/dummy_models/item_model.dart';
 import 'package:route_e_commerce/features/product_list/view/widgets/grid_view_card_item.dart';
 import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
@@ -7,7 +8,8 @@ import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductListViewBody extends StatelessWidget {
-  const ProductListViewBody({super.key});
+  final List<ProductEntity> products;
+  const ProductListViewBody({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +45,10 @@ class ProductListViewBody extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                itemCount: dummyItemData.length,
+                itemCount: products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2 / 2.8,
+                    childAspectRatio: 1 / 1.1,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 16.h),
                 itemBuilder: (context, index) {
@@ -54,12 +56,9 @@ class ProductListViewBody extends StatelessWidget {
                     splashColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onTap: () {
-                      Navigator.pushNamed(context, ProductDetailsView.routeName,
-                          arguments: dummyItemData[index]);
-                    },
+                    onTap: () {},
                     child: GridViewCardItem(
-                      dummyItemModel: dummyItemData[index],
+                      product: products[index],
                     ),
                   );
                 },
