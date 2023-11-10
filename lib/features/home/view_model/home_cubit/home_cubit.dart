@@ -39,7 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
     }, (r) {
       brandsData = r.data ?? [];
       emit(
-        HomeBrandsSuccess(categoryResponseEntity: r),
+        HomeBrandsSuccess(categoryOrBrandResponseEntity: r),
       );
     });
   }

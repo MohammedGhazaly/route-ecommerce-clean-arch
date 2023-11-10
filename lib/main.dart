@@ -32,7 +32,7 @@ class ECommerceApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
           theme: MyTheme.mainTheme,
-          initialRoute: ProductListView.routeName,
+          initialRoute: RootView.routeName,
           routes: {
             RootView.routeName: (context) => RootView(),
             ProductDetailsView.routeName: (context) =>

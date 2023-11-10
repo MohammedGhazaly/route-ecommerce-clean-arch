@@ -141,7 +141,8 @@ class ApiManager {
     }
   }
 
-  Future<Either<Failures, ProductResponseDto>> getProducts() async {
+  Future<Either<Failures, ProductResponseDto>> getProducts(
+      {String? brandName, String? categoryName}) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {

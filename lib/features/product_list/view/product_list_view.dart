@@ -6,6 +6,7 @@ import 'package:route_e_commerce/domain/di/di.dart';
 import 'package:route_e_commerce/features/product_list/view/widgets/product_listview_body.dart';
 import 'package:route_e_commerce/features/product_list/view_model/product_list_cubit/product_list_cubit.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
+import 'package:route_e_commerce/utils/shared_widgets/failure_widget.dart';
 
 class ProductListView extends StatefulWidget {
   static String routeName = "product-route";
@@ -36,32 +37,11 @@ class _ProductListViewState extends State<ProductListView> {
               products: state.products,
             );
           } else if (state is ProductListFailure) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    state.errorMessage,
-                    style: TextStyle(
-                      color: MyColors.primaryColor,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 48.sp),
-                        backgroundColor: MyColors.primaryColor,
-                        foregroundColor: Colors.white),
-                    onPressed: () {
-                      productListCubit.getProducts();
-                    },
-                    child: Text(
-                      "Try again",
-                    ),
-                  )
-                ],
-              ),
+            return FailureWidget(
+              errorMessage: state.errorMessage,
+              onPressedFunction: () {
+                productListCubit.getProducts();
+              },
             );
           } else {
             return Center(

@@ -23,8 +23,8 @@ final class HomeCategoryFailure extends HomeState {
 final class HomeBrandsLoading extends HomeState {}
 
 final class HomeBrandsSuccess extends HomeState {
-  final CategoryOrBrandResponseEntity categoryResponseEntity;
-  HomeBrandsSuccess({required this.categoryResponseEntity});
+  final CategoryOrBrandResponseEntity categoryOrBrandResponseEntity;
+  HomeBrandsSuccess({required this.categoryOrBrandResponseEntity});
 }
 
 final class HomeBrandsFailure extends HomeState {
