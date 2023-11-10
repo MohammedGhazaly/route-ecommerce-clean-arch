@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductItemSoldAndRating extends StatelessWidget {
   const ProductItemSoldAndRating({
     super.key,
-    required this.itemDetails,
+    required this.product,
   });
 
-  final DummyItemModel itemDetails;
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ProductItemSoldAndRating extends StatelessWidget {
             ),
           ),
           child: Text(
-            "${itemDetails.itemsSold} Sold",
+            "${product.sold} Sold",
             style: TextStyle(
               color: MyColors.darkPrimaryColor,
               fontSize: 14.sp,
@@ -42,7 +42,7 @@ class ProductItemSoldAndRating extends StatelessWidget {
           width: 4.w,
         ),
         Text(
-          "${itemDetails.avgRating} (${itemDetails.ratingCount})",
+          "${product.ratingsAverage} (${product.ratingsQuantity})",
           style: TextStyle(
             color: MyColors.darkPrimaryColor,
             fontSize: 14.sp,

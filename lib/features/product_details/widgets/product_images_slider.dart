@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/item_card_header.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -9,10 +9,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class ProductImagesSlider extends StatefulWidget {
   const ProductImagesSlider({
     super.key,
-    required this.itemDetails,
+    required this.product,
   });
 
-  final DummyItemModel itemDetails;
+  final ProductEntity product;
 
   @override
   State<ProductImagesSlider> createState() => _ProductImagesSliderState();
@@ -24,16 +24,16 @@ class _ProductImagesSliderState extends State<ProductImagesSlider> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300.h,
+      height: 310.h,
       width: double.infinity,
       child: Stack(
         children: [
           CarouselSlider.builder(
-            itemCount: widget.itemDetails.imgUrl.length,
+            itemCount: widget.product.images?.length ?? 0,
             itemBuilder: (context, itemIndex, pageViewIndex) {
               return ItemCardHeader(
-                image: widget.itemDetails.imgUrl[itemIndex],
-                isWishlisted: widget.itemDetails.isWishlisted,
+                height: 315.h,
+                image: widget.product.images![itemIndex],
               );
             },
             options: CarouselOptions(
@@ -48,7 +48,7 @@ class _ProductImagesSliderState extends State<ProductImagesSlider> {
               viewportFraction: 1,
               // enlargeFactor: 0.5,
               clipBehavior: Clip.none,
-              height: 300.h,
+              height: 310.h,
               enableInfiniteScroll: true,
               autoPlay: false,
               // autoPlayInterval: const Duration(seconds: 4),
@@ -67,7 +67,7 @@ class _ProductImagesSliderState extends State<ProductImagesSlider> {
                     dotColor: Colors.grey,
                     activeDotColor: MyColors.primaryColor),
                 activeIndex: activeIndex,
-                count: widget.itemDetails.imgUrl.length,
+                count: widget.product.images!.length,
               ),
             ),
           ),

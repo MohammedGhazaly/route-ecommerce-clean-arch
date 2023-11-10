@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/features/views/product_details/widgets/custom_product_details_button.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
+import 'package:route_e_commerce/features/product_details/widgets/custom_product_details_button.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductDetailsBottomSection extends StatelessWidget {
-  const ProductDetailsBottomSection({super.key});
+  final ProductEntity product;
+  const ProductDetailsBottomSection({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +14,15 @@ class ProductDetailsBottomSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Total price",
+              "price",
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
                 color: MyColors.primaryColor.withOpacity(
-                  0.6,
+                  1,
                 ),
               ),
             ),
@@ -26,8 +30,11 @@ class ProductDetailsBottomSection extends StatelessWidget {
               height: 5.h,
             ),
             Text(
-              "3500",
-              style: TextStyle(fontSize: 18.sp, color: MyColors.primaryColor),
+              "${product.price} EGP",
+              style: TextStyle(
+                  fontSize: 16.sp,
+                  color: MyColors.primaryColor,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),

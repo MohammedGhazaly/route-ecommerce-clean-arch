@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/features/auth/views/login/login_view.dart';
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/product_list/view/product_list_view.dart';
-import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
+import 'package:route_e_commerce/features/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/root/view/root_view.dart';
 import 'package:route_e_commerce/utils/my_theme.dart';
 

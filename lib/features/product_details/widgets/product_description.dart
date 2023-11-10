@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductDescription extends StatelessWidget {
   const ProductDescription({
     super.key,
-    required this.itemDetails,
+    required this.product,
   });
 
-  final DummyItemModel itemDetails;
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ProductDescription extends StatelessWidget {
           ),
         ),
         ReadMoreText(
-          itemDetails.description,
+          product.description ?? "",
           trimLines: 3,
           trimMode: TrimMode.Line,
           style: TextStyle(

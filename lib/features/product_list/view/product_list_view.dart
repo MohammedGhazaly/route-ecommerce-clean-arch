@@ -37,13 +37,30 @@ class _ProductListViewState extends State<ProductListView> {
             );
           } else if (state is ProductListFailure) {
             return Center(
-              child: Text(
-                state.errorMessage,
-                style: TextStyle(
-                  color: MyColors.primaryColor,
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    state.errorMessage,
+                    style: TextStyle(
+                      color: MyColors.primaryColor,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 48.sp),
+                        backgroundColor: MyColors.primaryColor,
+                        foregroundColor: Colors.white),
+                    onPressed: () {
+                      productListCubit.getProducts();
+                    },
+                    child: Text(
+                      "Try again",
+                    ),
+                  )
+                ],
               ),
             );
           } else {

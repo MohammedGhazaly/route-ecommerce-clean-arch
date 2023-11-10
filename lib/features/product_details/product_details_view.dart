@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
-import 'package:route_e_commerce/features/views/product_details/widgets/product_details_view_body.dart';
+import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
+import 'package:route_e_commerce/features/product_details/widgets/product_details_view_body.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductDetailsView extends StatelessWidget {
@@ -10,8 +10,8 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DummyItemModel itemDetails =
-        ModalRoute.of(context)!.settings.arguments as DummyItemModel;
+    ProductEntity productDetails =
+        ModalRoute.of(context)!.settings.arguments as ProductEntity;
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
@@ -29,16 +29,11 @@ class ProductDetailsView extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
             icon: Icon(Icons.shopping_cart_outlined),
           ),
         ],
       ),
-      body: ProductDetailsViewBody(itemDetails: itemDetails),
+      body: ProductDetailsViewBody(product: productDetails),
     );
   }
 }

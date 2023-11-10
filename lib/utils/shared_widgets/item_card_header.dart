@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ItemCardHeader extends StatefulWidget {
+  final double? height;
   final String image;
-  final bool isWishlisted;
+
   const ItemCardHeader({
     super.key,
     required this.image,
-    required this.isWishlisted,
+    required this.height,
   });
 
   @override
@@ -17,12 +18,10 @@ class ItemCardHeader extends StatefulWidget {
 }
 
 class _ItemCardHeaderState extends State<ItemCardHeader> {
-  late bool isWishlisted;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    isWishlisted = widget.isWishlisted;
   }
 
   @override
@@ -35,27 +34,22 @@ class _ItemCardHeaderState extends State<ItemCardHeader> {
             imageUrl: widget.image,
             fit: BoxFit.cover,
             width: double.infinity,
-            height: 110.h,
+            height: widget.height,
           ),
         ),
         Positioned(
           top: 5.h,
-          right: 5.h,
+          right: 15.h,
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 15,
             child: IconButton(
               color: MyColors.primaryColor,
               padding: EdgeInsets.zero,
-              onPressed: () {
-                isWishlisted = !isWishlisted;
-                setState(() {});
-              },
-              icon: isWishlisted == true
-                  ? const Icon(Icons.favorite_rounded)
-                  : const Icon(
-                      Icons.favorite_border_rounded,
-                    ),
+              onPressed: () {},
+              icon: Icon(
+                Icons.favorite_border_rounded,
+              ),
             ),
           ),
         )

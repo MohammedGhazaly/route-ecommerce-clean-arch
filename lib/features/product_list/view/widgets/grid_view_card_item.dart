@@ -24,7 +24,7 @@ class GridViewCardItem extends StatelessWidget {
         children: [
           ItemCardHeader(
             image: product.images![0],
-            isWishlisted: false,
+            height: 110.h,
           ),
           SizedBox(
             height: 7.h,

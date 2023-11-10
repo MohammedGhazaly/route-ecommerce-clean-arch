@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
-import 'package:route_e_commerce/dummy_models/item_model.dart';
 import 'package:route_e_commerce/features/product_list/view/widgets/grid_view_card_item.dart';
-import 'package:route_e_commerce/features/views/product_details/product_details_view.dart';
+import 'package:route_e_commerce/features/product_details/product_details_view.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
@@ -45,6 +44,7 @@ class ProductListViewBody extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
+                shrinkWrap: true,
                 itemCount: products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -56,7 +56,10 @@ class ProductListViewBody extends StatelessWidget {
                     splashColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, ProductDetailsView.routeName,
+                          arguments: products[index]);
+                    },
                     child: GridViewCardItem(
                       product: products[index],
                     ),
