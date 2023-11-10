@@ -10,8 +10,9 @@ class ProductListCubit extends Cubit<ProductListState> {
   ProductListCubit({required this.getProductsUseCase})
       : super(ProductListLoading());
 
-  Future<void> getProducts() async {
-    var either = await getProductsUseCase.invoke();
+  Future<void> getProducts({String? categoryId, String? brandId}) async {
+    var either = await getProductsUseCase.invoke(
+        brandId: brandId, categoryId: categoryId);
     return either.fold((l) {
       emit(ProductListFailure(
           errorMessage:

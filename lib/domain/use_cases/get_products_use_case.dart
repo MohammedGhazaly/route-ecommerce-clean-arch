@@ -7,7 +7,8 @@ class GetProductsUseCase {
   ProductRepo productRepo;
   GetProductsUseCase({required this.productRepo});
 
-  Future<Either<Failures, ProductResponseEntity>> invoke() {
-    return productRepo.getProducts();
+  Future<Either<Failures, ProductResponseEntity>> invoke(
+      {String? brandId, String? categoryId}) {
+    return productRepo.getProducts(brandId: brandId, categoryId: categoryId);
   }
 }

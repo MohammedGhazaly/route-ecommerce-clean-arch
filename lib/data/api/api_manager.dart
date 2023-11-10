@@ -142,11 +142,21 @@ class ApiManager {
   }
 
   Future<Either<Failures, ProductResponseDto>> getProducts(
-      {String? brandName, String? categoryName}) async {
+      {String? brandId, String? categoryId}) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint);
+      late Uri url;
+      if (brandId != null) {
+        url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint,
+            {"brand": brandId});
+      } else if (categoryId != null) {
+        url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint,
+            {"category": categoryId});
+      } else {
+        url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint);
+      }
+      print(url);
 
       http.Response response = await http.get(url);
       var productResponseModel =

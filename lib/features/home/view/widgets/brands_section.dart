@@ -23,6 +23,7 @@ class BrandsSection extends StatelessWidget {
             return CategoriesOrBrandsItems(
               categories: state.categoryOrBrandResponseEntity.data ?? [],
               fillOrCover: "cover",
+              brandOrCategory: "brand",
             );
           } else if (state is HomeBrandsFailure) {
             return FailureWidget(

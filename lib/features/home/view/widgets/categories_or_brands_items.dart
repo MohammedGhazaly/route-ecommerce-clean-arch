@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/home_entity/category_data_entity.dart';
 import 'package:route_e_commerce/features/home/view/widgets/category_or_brand_item.dart';
+import 'package:route_e_commerce/features/product_details/product_details_view.dart';
+import 'package:route_e_commerce/features/product_list/view/product_list_view.dart';
 
 class CategoriesOrBrandsItems extends StatelessWidget {
   final List<CategoryOrBrandDataEntity> categories;
   final String fillOrCover;
+  final String brandOrCategory;
   const CategoriesOrBrandsItems(
-      {super.key, required this.categories, required this.fillOrCover});
+      {super.key,
+      required this.categories,
+      required this.fillOrCover,
+      required this.brandOrCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +29,41 @@ class CategoriesOrBrandsItems extends StatelessWidget {
               crossAxisSpacing: 0,
               mainAxisSpacing: 0),
           itemBuilder: (context, index) {
-            return CategoryOrBrandItem(
-              category: categories[index],
-              fillOrCover: fillOrCover,
+            return InkWell(
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () {
+                if (brandOrCategory == "category") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ProductListView(
+                          categoryId: categories[index].sId,
+                        );
+                      },
+                    ),
+                  );
+                }
+                if (brandOrCategory == "brand") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ProductListView(
+                          brandId: categories[index].sId,
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+              child: CategoryOrBrandItem(
+                category: categories[index],
+                fillOrCover: fillOrCover,
+              ),
             );
           },
         )

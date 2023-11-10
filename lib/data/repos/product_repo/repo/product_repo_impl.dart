@@ -8,7 +8,9 @@ class ProductRepoImpl implements ProductRepo {
   ProductRemoteDataSource productRemoteDataSource;
   ProductRepoImpl({required this.productRemoteDataSource});
   @override
-  Future<Either<Failures, ProductResponseEntity>> getProducts() {
-    return productRemoteDataSource.getProducts();
+  Future<Either<Failures, ProductResponseEntity>> getProducts(
+      {String? brandId, String? categoryId}) {
+    return productRemoteDataSource.getProducts(
+        brandId: brandId, categoryId: categoryId);
   }
 }

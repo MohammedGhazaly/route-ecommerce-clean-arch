@@ -8,29 +8,21 @@ import 'package:route_e_commerce/features/product_list/view_model/product_list_c
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/failure_widget.dart';
 
-class ProductListView extends StatefulWidget {
+class ProductListView extends StatelessWidget {
   static String routeName = "product-route";
-  const ProductListView({super.key});
-
-  @override
-  State<ProductListView> createState() => _ProductListViewState();
-}
-
-class _ProductListViewState extends State<ProductListView> {
-  ProductListCubit productListCubit =
-      ProductListCubit(getProductsUseCase: injectGetProductsUseCase());
-
-  @override
-  void initState() {
-    super.initState();
-    productListCubit.getProducts();
-  }
+  final String? brandId;
+  final String? categoryId;
+  const ProductListView({super.key, this.brandId, this.categoryId});
 
   @override
   Widget build(BuildContext context) {
+    ProductListCubit productListCubit =
+        ProductListCubit(getProductsUseCase: injectGetProductsUseCase());
+
     return Scaffold(
       body: BlocBuilder<ProductListCubit, ProductListState>(
-        bloc: productListCubit,
+        bloc: productListCubit
+          ..getProducts(brandId: brandId, categoryId: categoryId),
         builder: (context, state) {
           if (state is ProductListSuccess) {
             return ProductListViewBody(
