@@ -7,18 +7,29 @@ import 'package:route_e_commerce/features/product_list/view/product_list_view.da
 import 'package:route_e_commerce/features/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/root/view/root_view.dart';
 import 'package:route_e_commerce/utils/my_theme.dart';
+import 'package:route_e_commerce/utils/shared_pref/shared_pref_utils.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  late String route;
+  await SharedPrefUtils.init();
   await Future.delayed(const Duration(seconds: 3));
+  var user = SharedPrefUtils.getData("token");
+  print(user);
+  if (user == null) {
+    route = LoginView.routeName;
+  } else {
+    route = RootView.routeName;
+  }
   FlutterNativeSplash.remove();
-
-  runApp(const ECommerceApp());
+  runApp(ECommerceApp(
+    route: route,
+  ));
 }
 
 class ECommerceApp extends StatelessWidget {
-  const ECommerceApp({super.key});
+  final String route;
+  const ECommerceApp({super.key, required this.route});
 
   // This widget is the root of your application.
   @override
@@ -32,7 +43,7 @@ class ECommerceApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
           theme: MyTheme.mainTheme,
-          initialRoute: RootView.routeName,
+          initialRoute: route,
           routes: {
             RootView.routeName: (context) => RootView(),
             ProductDetailsView.routeName: (context) =>

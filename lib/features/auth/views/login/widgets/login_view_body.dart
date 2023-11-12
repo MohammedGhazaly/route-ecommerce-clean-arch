@@ -8,6 +8,8 @@ import 'package:route_e_commerce/features/auth/view_model/login/login_cubit.dart
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_button.dart';
 import 'package:route_e_commerce/features/auth/views/shared_widgets/custom_auth_field.dart';
+import 'package:route_e_commerce/features/root/view/root_view.dart';
+import 'package:route_e_commerce/utils/shared_pref/shared_pref_utils.dart';
 import 'package:route_e_commerce/utils/shared_widgets/custom_snackbar_with_awesome_content.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -158,13 +160,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ));
                         }
                         if (state is LoginSuccess) {
-                          ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(buildCustomSnackBar(
-                              color: Colors.green[900]!,
-                              title: "Account created successfully",
-                              contentType: ContentType.success,
-                            ));
+                          print(state.registerRequestModel.token);
+                          SharedPrefUtils.saveData(
+                              key: "token",
+                              value: state.registerRequestModel.token);
+                          Navigator.pushReplacementNamed(
+                              context, RootView.routeName);
                         }
                       },
                       builder: (context, state) {

@@ -40,14 +40,33 @@ class ProductListView extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Center(
-                  child: Text(
-                "sorry, no item found for this category or brand.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: MyColors.primaryColor,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "sorry, no item found for this category or brand.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: MyColors.primaryColor,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: MyColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                              side: BorderSide(
+                                  color: MyColors.primaryColor, width: 2))),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back),
+                      label: Text("Go back"))
+                ],
               )),
             );
           } else {
