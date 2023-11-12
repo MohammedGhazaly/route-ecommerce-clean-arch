@@ -16,3 +16,5 @@ final class ProductListFailure extends ProductListState {
 
   ProductListFailure({required this.errorMessage});
 }
+
+final class ProductEmpty extends ProductListState {}

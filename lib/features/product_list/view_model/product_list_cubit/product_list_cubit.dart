@@ -18,7 +18,11 @@ class ProductListCubit extends Cubit<ProductListState> {
           errorMessage:
               l.errorMessage ?? "Something went wrong, try again later."));
     }, (r) {
-      emit(ProductListSuccess(products: r.data ?? []));
+      if (r.data!.isEmpty) {
+        emit(ProductEmpty());
+      } else {
+        emit(ProductListSuccess(products: r.data ?? []));
+      }
     });
   }
 }

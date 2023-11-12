@@ -32,8 +32,23 @@ class ProductListView extends StatelessWidget {
             return FailureWidget(
               errorMessage: state.errorMessage,
               onPressedFunction: () {
-                productListCubit.getProducts();
+                productListCubit.getProducts(
+                    brandId: brandId, categoryId: categoryId);
               },
+            );
+          } else if (state is ProductEmpty) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Center(
+                  child: Text(
+                "sorry, no item found for this category or brand.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: MyColors.primaryColor,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
             );
           } else {
             return Center(
