@@ -23,8 +23,8 @@ class CartItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.r),
             child: Image.asset(
               "assets/images/items/wash_machine.png",
-              width: 130.h,
-              height: 130.h,
+              width: 140.h,
+              height: 140.h,
               fit: BoxFit.cover,
             ),
           ),
@@ -33,6 +33,7 @@ class CartItemWidget extends StatelessWidget {
           ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -59,6 +60,7 @@ class CartItemWidget extends StatelessWidget {
                     )
                   ],
                 ),
+                Text("Title"),
                 Padding(
                   padding: EdgeInsets.only(right: 8.w),
                   child: Row(
