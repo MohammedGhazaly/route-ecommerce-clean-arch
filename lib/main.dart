@@ -29,8 +29,9 @@ Future<void> main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<CartCubit>(
-          create: (context) =>
-              CartCubit(addToCartUseCase: injectAddToCartUseCase())),
+          create: (context) => CartCubit(
+              addToCartUseCase: injectAddToCartUseCase(),
+              getUserCartUseCase: injectGetUserCartUseCase())),
     ],
     child: ECommerceApp(
       route: route,

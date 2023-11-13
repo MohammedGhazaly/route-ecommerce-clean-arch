@@ -9,6 +9,7 @@ import 'package:route_e_commerce/data/models/request_models/auth_models/register
 import "package:route_e_commerce/data/models/response_models/auth_models/login_responseDto.dart";
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import "package:route_e_commerce/data/models/response_models/cart_models/add_to_cart_responseDto.dart";
+import "package:route_e_commerce/data/models/response_models/cart_models/get_user_cart_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/home_models/category_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/product_models/product_response_dto.dart";
 import "package:route_e_commerce/domain/entity/failures.dart";
@@ -200,6 +201,32 @@ class ApiManager {
       }
     } else {
       return Left<Failures, AddToCartResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, GetUserCartResponseDto>> getUserCart() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.cartEndPoint);
+      http.Response response =
+          await http.get(url, headers: {"token": token as String});
+      var productResponseModel =
+          GetUserCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, GetUserCartResponseDto>(productResponseModel);
+      } else if (response.statusCode == 401) {
+        return Left<Failures, GetUserCartResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      } else {
+        return Left<Failures, GetUserCartResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, GetUserCartResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

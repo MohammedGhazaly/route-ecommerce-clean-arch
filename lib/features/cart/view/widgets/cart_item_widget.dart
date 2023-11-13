@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/domain/entity/cart_entity/get_user_cart_entity.dart';
+import 'package:route_e_commerce/features/cart/view/widgets/inc_dec_widget.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CartItemWidget extends StatelessWidget {
+  final GetUserCartProductsEntity getUserCartProductsEntity;
   const CartItemWidget({
     super.key,
+    required this.getUserCartProductsEntity,
   });
 
   @override
@@ -21,8 +25,8 @@ class CartItemWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(15.r),
-            child: Image.asset(
-              "assets/images/items/wash_machine.png",
+            child: Image.network(
+              getUserCartProductsEntity.product!.imageCover!,
               width: 140.h,
               height: 140.h,
               fit: BoxFit.cover,
@@ -39,7 +43,7 @@ class CartItemWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "Washin machine",
+                        getUserCartProductsEntity.product!.title!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -60,7 +64,6 @@ class CartItemWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                Text("Title"),
                 Padding(
                   padding: EdgeInsets.only(right: 8.w),
                   child: Row(
@@ -68,7 +71,7 @@ class CartItemWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "3500 EGP",
+                          "${getUserCartProductsEntity.price!.toString()} LE",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -78,44 +81,8 @@ class CartItemWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                          color: MyColors.primaryColor,
-                          borderRadius: BorderRadius.circular(
-                            100.r,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.remove_circle_outline_rounded,
-                                color: Colors.white,
-                                size: 28.sp,
-                              ),
-                            ),
-                            Text(
-                              "1",
-                              style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                            IconButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.add_circle_outline_rounded,
-                                color: Colors.white,
-                                size: 28.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      IncDecWidget(
+                          getUserCartProductsEntity: getUserCartProductsEntity),
                     ],
                   ),
                 )

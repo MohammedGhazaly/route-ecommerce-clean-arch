@@ -2,15 +2,19 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/add_to_cart_response_entity.dart';
+import 'package:route_e_commerce/domain/entity/cart_entity/get_user_cart_entity.dart';
 import 'package:route_e_commerce/domain/use_cases/add_to_cart_use_case.dart';
+import 'package:route_e_commerce/domain/use_cases/get_user_cart_use_case.dart';
 
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   final AddToCartUseCase addToCartUseCase;
-  CartCubit({required this.addToCartUseCase}) : super(CartInitial());
+  final GetUserCartUseCase getUserCartUseCase;
+  CartCubit({required this.getUserCartUseCase, required this.addToCartUseCase})
+      : super(CartInitial());
   bool isAdding = false;
-  int numberOfCartItems = 0;
+  num numberOfCartItems = 0;
 
   static CartCubit get(context) => BlocProvider.of(context);
 
@@ -18,17 +22,32 @@ class CartCubit extends Cubit<CartState> {
     isAdding = true;
     emit(AddingItemToCart());
     var either = await addToCartUseCase.invoke(productId: productId);
-    print("Inside");
     return either.fold((l) {
       isAdding = false;
 
-      emit(CartFailure(
+      emit(AddItemToCartFailure(
           errorMessage:
               l.errorMessage ?? "Something went wrong, try again later."));
-    }, (r) {
+    }, (r) async {
       isAdding = false;
       numberOfCartItems = r.numOfCartItems ?? 0;
       emit(CartItemAdded(addToCartResponse: r));
+    });
+  }
+
+  Future<void> getUserCart() async {
+    emit(UserCartLoading());
+    var either = await getUserCartUseCase.invoke();
+    return either.fold((l) {
+      if (l.errorMessage!.split(":")[0] == "No cart exist for this user") {
+        emit(UserCartEmpty());
+      } else {
+        emit(UserCartFailure(errorMessage: l.errorMessage ?? ""));
+      }
+    }, (r) {
+      numberOfCartItems = r.numOfCartItems ?? 0;
+
+      emit(UserCartSuccess(getUserCartResponseEntity: r));
     });
   }
 }

@@ -1,6 +1,6 @@
 class GetUserCartResponseEntity {
   String? status;
-  int? numOfCartItems;
+  num? numOfCartItems;
   GetUserCartDataEntity? data;
 
   GetUserCartResponseEntity({this.status, this.numOfCartItems, this.data});
@@ -12,8 +12,8 @@ class GetUserCartDataEntity {
   List<GetUserCartProductsEntity>? products;
   String? createdAt;
   String? updatedAt;
-  int? iV;
-  int? totalCartPrice;
+  num? iV;
+  num? totalCartPrice;
 
   GetUserCartDataEntity(
       {this.sId,
@@ -26,10 +26,10 @@ class GetUserCartDataEntity {
 }
 
 class GetUserCartProductsEntity {
-  int? count;
+  num? count;
   String? sId;
   GetUserCartProductEntity? product;
-  int? price;
+  num? price;
 
   GetUserCartProductsEntity({this.count, this.sId, this.product, this.price});
 }
@@ -37,9 +37,9 @@ class GetUserCartProductsEntity {
 class GetUserCartProductEntity {
   String? sId;
   String? title;
-  int? quantity;
+  num? quantity;
   String? imageCover;
-  double? ratingsAverage;
+  num? ratingsAverage;
   String? id;
 
   GetUserCartProductEntity(

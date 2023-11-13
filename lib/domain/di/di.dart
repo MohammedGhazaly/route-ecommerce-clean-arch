@@ -19,6 +19,7 @@ import 'package:route_e_commerce/domain/use_cases/add_to_cart_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_brands_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_categories_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_products_use_case.dart';
+import 'package:route_e_commerce/domain/use_cases/get_user_cart_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/login_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
 
@@ -80,4 +81,8 @@ CartRepo injectCartRepo() {
 
 AddToCartUseCase injectAddToCartUseCase() {
   return AddToCartUseCase(cartRepo: injectCartRepo());
+}
+
+GetUserCartUseCase injectGetUserCartUseCase() {
+  return GetUserCartUseCase(cartRepo: injectCartRepo());
 }
