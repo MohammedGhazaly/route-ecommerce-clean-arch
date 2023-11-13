@@ -13,27 +13,20 @@ class RootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<CartCubit>(
-            create: (context) =>
-                CartCubit(addToCartUseCase: injectAddToCartUseCase())),
-      ],
-      child: BlocBuilder<RootCubit, RootState>(
-        bloc: rootCubit,
-        builder: (context, state) {
-          return Scaffold(
-            body: rootCubit.screens[rootCubit.selectedIndex],
-            bottomNavigationBar: buildCustomBottomNavigationBar(
-              context: context,
-              selectedIndex: rootCubit.selectedIndex,
-              onTapFunction: (index) {
-                rootCubit.changeBottomNavigationIndex(index);
-              },
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<RootCubit, RootState>(
+      bloc: rootCubit,
+      builder: (context, state) {
+        return Scaffold(
+          body: rootCubit.screens[rootCubit.selectedIndex],
+          bottomNavigationBar: buildCustomBottomNavigationBar(
+            context: context,
+            selectedIndex: rootCubit.selectedIndex,
+            onTapFunction: (index) {
+              rootCubit.changeBottomNavigationIndex(index);
+            },
+          ),
+        );
+      },
     );
   }
 }

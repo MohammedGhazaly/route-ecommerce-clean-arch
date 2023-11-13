@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce/domain/di/di.dart';
 import 'package:route_e_commerce/features/auth/views/login/login_view.dart';
 import 'package:route_e_commerce/features/auth/views/register/register_view.dart';
+import 'package:route_e_commerce/features/cart/view/cart_view.dart';
+import 'package:route_e_commerce/features/cart/view_model/cart_cubit/cart_cubit.dart';
 import 'package:route_e_commerce/features/product_list/view/product_list_view.dart';
 import 'package:route_e_commerce/features/product_details/product_details_view.dart';
 import 'package:route_e_commerce/features/root/view/root_view.dart';
@@ -22,8 +26,15 @@ Future<void> main() async {
     route = RootView.routeName;
   }
   FlutterNativeSplash.remove();
-  runApp(ECommerceApp(
-    route: route,
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<CartCubit>(
+          create: (context) =>
+              CartCubit(addToCartUseCase: injectAddToCartUseCase())),
+    ],
+    child: ECommerceApp(
+      route: route,
+    ),
   ));
 }
 
@@ -51,6 +62,7 @@ class ECommerceApp extends StatelessWidget {
             RegisterView.routeName: (context) => const RegisterView(),
             LoginView.routeName: (context) => const LoginView(),
             ProductListView.routeName: (context) => const ProductListView(),
+            CartView.routeName: (context) => const CartView(),
           },
         );
       },

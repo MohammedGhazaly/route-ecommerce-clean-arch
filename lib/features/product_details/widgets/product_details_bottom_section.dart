@@ -42,7 +42,7 @@ class ProductDetailsBottomSection extends StatelessWidget {
           width: 35.w,
         ),
         Expanded(
-          child: CustomProductDetailsButton(),
+          child: CustomProductDetailsButton(productId: product.id!),
         )
       ],
     );

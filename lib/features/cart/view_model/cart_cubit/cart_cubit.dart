@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/add_to_cart_response_entity.dart';
 import 'package:route_e_commerce/domain/use_cases/add_to_cart_use_case.dart';
@@ -11,10 +12,13 @@ class CartCubit extends Cubit<CartState> {
   bool isAdding = false;
   int numberOfCartItems = 0;
 
+  static CartCubit get(context) => BlocProvider.of(context);
+
   Future<void> addToCart({required String productId}) async {
     isAdding = true;
     emit(AddingItemToCart());
     var either = await addToCartUseCase.invoke(productId: productId);
+    print("Inside");
     return either.fold((l) {
       isAdding = false;
 

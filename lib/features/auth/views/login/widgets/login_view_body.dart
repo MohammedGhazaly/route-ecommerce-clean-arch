@@ -160,7 +160,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ));
                         }
                         if (state is LoginSuccess) {
-                          print(state.registerRequestModel.token);
                           SharedPrefUtils.saveData(
                               key: "token",
                               value: state.registerRequestModel.token);

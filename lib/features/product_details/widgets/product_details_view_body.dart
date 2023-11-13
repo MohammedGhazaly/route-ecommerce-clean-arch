@@ -15,86 +15,105 @@ class ProductDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ProductImagesSlider(
-              product: product,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            // // أنا بس مش عارف السعر اللي معروض هنا هو السعر الجديد بتاع المنتج
-            // // ولا السعر التوتال
-            ProductName(prodcuct: product),
-            SizedBox(
-              height: 8.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(500.r),
-                      color: MyColors.primaryColor),
-                  child: Text(
-                    product.category?.slug ?? "",
-                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                  ),
-                ),
-                SizedBox(
-                  width: 8.w,
-                ),
-                Flexible(
-                  child: Container(
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 17.w,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              LogoWithShoppingCart(
+                  centerWidget: Text(
+                "Product details",
+                style: TextStyle(
+                    color: MyColors.darkPrimaryColor,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w500),
+              )),
+              SizedBox(
+                height: 20.h,
+              ),
+              ProductImagesSlider(
+                product: product,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              // // أنا بس مش عارف السعر اللي معروض هنا هو السعر الجديد بتاع المنتج
+              // // ولا السعر التوتال
+              ProductName(prodcuct: product),
+              SizedBox(
+                height: 8.h,
+              ),
+              Row(
+                children: [
+                  Container(
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(500.r),
                         color: MyColors.primaryColor),
                     child: Text(
-                      product.brand?.slug ?? "",
+                      product.category?.slug ?? "",
                       style: TextStyle(color: Colors.white, fontSize: 14.sp),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ProductItemSoldAndRating(
-                    product: product,
+                  SizedBox(
+                    width: 8.w,
                   ),
-                ),
-                // AddRemoveItemsWidget(
-                //   itemsInCart: itemDetails.itemsInCart,
-                // ),
-              ],
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            ProductDescription(product: product),
-            SizedBox(
-              height: 16.h,
-            ),
+                  Flexible(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(500.r),
+                          color: MyColors.primaryColor),
+                      child: Text(
+                        product.brand?.slug ?? "",
+                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: ProductItemSoldAndRating(
+                      product: product,
+                    ),
+                  ),
+                  // AddRemoveItemsWidget(
+                  //   itemsInCart: itemDetails.itemsInCart,
+                  // ),
+                ],
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              ProductDescription(product: product),
+              SizedBox(
+                height: 16.h,
+              ),
 
-            // SizedBox(
-            //   height: 48.h,
-            // ),
-            ProductDetailsBottomSection(
-              product: product,
-            )
-          ],
+              // SizedBox(
+              //   height: 48.h,
+              // ),
+              ProductDetailsBottomSection(
+                product: product,
+              )
+            ],
+          ),
         ),
       ),
     );

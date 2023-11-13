@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:route_e_commerce/domain/di/di.dart';
 import 'package:route_e_commerce/features/home/view/widgets/annountcements_section.dart';
 import 'package:route_e_commerce/features/home/view/widgets/brands_section.dart';
-import 'package:route_e_commerce/features/home/view/widgets/categories_or_brands_items.dart';
 import 'package:route_e_commerce/features/home/view/widgets/categories_section.dart';
-import 'package:route_e_commerce/features/home/view_model/home_cubit/home_cubit.dart';
 import 'package:route_e_commerce/features/product_list/view/product_list_view.dart';
-import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/logo_with_shopping.dart';
 
