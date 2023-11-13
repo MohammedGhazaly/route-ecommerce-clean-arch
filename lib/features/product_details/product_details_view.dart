@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/features/cart/view_model/cart_cubit/cart_cubit.dart';
 import 'package:route_e_commerce/features/product_details/widgets/product_details_view_body.dart';
-import 'package:route_e_commerce/utils/my_assets.dart';
-import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductDetailsView extends StatelessWidget {
   static String routeName = "product-details-view";

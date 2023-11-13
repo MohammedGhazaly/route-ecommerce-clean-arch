@@ -13,72 +13,79 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 17.w),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            LogoWithShoppingCart(),
-            SizedBox(
-              height: 24.h,
-            ),
-            const AnnouncementsSection(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          side: BorderSide(
-                            color: MyColors.darkPrimaryColor,
-                          )),
-                      backgroundColor: Colors.white,
-                      foregroundColor: MyColors.darkPrimaryColor),
-                  onPressed: () {
-                    Navigator.pushNamed(context, ProductListView.routeName);
-                  },
-                  child: Text(
-                    "View all products",
-                  ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 17.w),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              LogoWithShoppingCart(),
+              SizedBox(
+                height: 24.h,
+              ),
+              const AnnouncementsSection(),
+              SizedBox(
+                height: 24.h,
+              ),
+              Text(
+                "Categories",
+                style: TextStyle(
+                  color: MyColors.darkPrimaryColor,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            Text(
-              "Categories",
-              style: TextStyle(
-                color: MyColors.darkPrimaryColor,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
               ),
-            ),
-            SizedBox(
-              height: 12.h,
-            ),
-            CategoriesSection(),
-            SizedBox(
-              height: 24.h,
-            ),
-            Text(
-              "Brands",
-              style: TextStyle(
-                color: MyColors.darkPrimaryColor,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
+              SizedBox(
+                height: 12.h,
               ),
-            ),
-            BrandsSection()
-          ],
+              CategoriesSection(),
+              SizedBox(
+                height: 24.h,
+              ),
+              Text(
+                "Brands",
+                style: TextStyle(
+                  color: MyColors.darkPrimaryColor,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              BrandsSection(),
+              SizedBox(
+                height: 24.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            side: const BorderSide(
+                              color: MyColors.darkPrimaryColor,
+                            )),
+                        backgroundColor: Colors.white,
+                        foregroundColor: MyColors.darkPrimaryColor),
+                    onPressed: () {
+                      Navigator.pushNamed(context, ProductListView.routeName);
+                    },
+                    child: const Text(
+                      "View all products",
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
