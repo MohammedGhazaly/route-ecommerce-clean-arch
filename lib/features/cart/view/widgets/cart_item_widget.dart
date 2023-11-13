@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/get_user_cart_entity.dart';
 import 'package:route_e_commerce/features/cart/view/widgets/inc_dec_widget.dart';
+import 'package:route_e_commerce/features/cart/view_model/cart_cubit/cart_cubit.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -13,6 +16,10 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cartCubit = BlocProvider.of<CartCubit>(
+      context,
+    );
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: MyColors.primaryColor, width: 1),
@@ -25,8 +32,8 @@ class CartItemWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(15.r),
-            child: Image.network(
-              getUserCartProductsEntity.product!.imageCover!,
+            child: CachedNetworkImage(
+              imageUrl: getUserCartProductsEntity.product!.imageCover!,
               width: 140.h,
               height: 140.h,
               fit: BoxFit.cover,

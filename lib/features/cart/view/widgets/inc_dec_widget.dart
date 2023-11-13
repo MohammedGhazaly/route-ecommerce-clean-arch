@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/get_user_cart_entity.dart';
-import 'package:route_e_commerce/features/cart/view/cart_view.dart';
 import 'package:route_e_commerce/features/cart/view_model/cart_cubit/cart_cubit.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
@@ -51,8 +49,9 @@ class IncDecWidget extends StatelessWidget {
                   .showSnackBar(SnackBar(content: Text("Adding item")));
               await cartCubit.addToCart(
                   productId: getUserCartProductsEntity.product!.sId!);
-              if (!context.mounted) return;
-              Navigator.pushReplacementNamed(context, CartView.routeName);
+              await cartCubit.getUserCart();
+              // if (!context.mounted) return;
+              // Navigator.pushReplacementNamed(context, CartView.routeName);
             },
             icon: Icon(
               Icons.add_circle_outline_rounded,

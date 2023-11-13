@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/features/product_list/view/widgets/grid_view_card_item.dart';
 import 'package:route_e_commerce/features/product_details/product_details_view.dart';
-import 'package:route_e_commerce/utils/my_assets.dart';
-import 'package:route_e_commerce/utils/my_colors.dart';
 import 'package:route_e_commerce/utils/shared_widgets/logo_with_shopping.dart';
 
 class ProductListViewBody extends StatelessWidget {

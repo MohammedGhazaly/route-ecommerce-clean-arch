@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:route_e_commerce/domain/di/di.dart';
 import 'package:route_e_commerce/features/cart/view/widgets/cart_bottom_section.dart';
 import 'package:route_e_commerce/features/cart/view/widgets/cart_item_widget.dart';
 import 'package:route_e_commerce/features/cart/view_model/cart_cubit/cart_cubit.dart';
@@ -15,9 +14,10 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CartCubit cartCubit = CartCubit(
-        getUserCartUseCase: injectGetUserCartUseCase(),
-        addToCartUseCase: injectAddToCartUseCase());
+    // CartCubit cartCubit = CartCubit(
+    //     getUserCartUseCase: injectGetUserCartUseCase(),
+    //     addToCartUseCase: injectAddToCartUseCase());
+    final cartCubit = BlocProvider.of<CartCubit>(context);
     return SafeArea(
         child: Padding(
       padding: EdgeInsets.symmetric(
