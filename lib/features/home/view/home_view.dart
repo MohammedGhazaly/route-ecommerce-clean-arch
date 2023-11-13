@@ -11,6 +11,7 @@ import 'package:route_e_commerce/features/home/view_model/home_cubit/home_cubit.
 import 'package:route_e_commerce/features/product_list/view/product_list_view.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
+import 'package:route_e_commerce/utils/shared_widgets/logo_with_shopping.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -28,10 +29,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Image.asset(
-              MyAssets.logo,
-              color: MyColors.primaryColor,
-            ),
+            LogoWithShoppingCart(),
             SizedBox(
               height: 24.h,
             ),

@@ -7,6 +7,7 @@ import 'package:route_e_commerce/features/product_details/widgets/product_images
 import 'package:route_e_commerce/features/product_details/widgets/product_item_sold_and_rating.dart';
 import 'package:route_e_commerce/features/product_details/widgets/product_name_and_total_price.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
+import 'package:route_e_commerce/utils/shared_widgets/logo_with_shopping.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   final ProductEntity product;

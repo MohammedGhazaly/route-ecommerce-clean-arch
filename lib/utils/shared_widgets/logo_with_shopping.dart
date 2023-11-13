@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
-import 'package:route_e_commerce/utils/shared_widgets/custom_text_field.dart';
 
-class CustomSearchWithShoppingCart extends StatelessWidget {
-  const CustomSearchWithShoppingCart({
+class LogoWithShoppingCart extends StatelessWidget {
+  final Widget? centerWidget;
+  const LogoWithShoppingCart({
     super.key,
+    this.centerWidget,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-          child: CustomTextField(),
+        Image.asset(
+          MyAssets.logo,
+          color: MyColors.primaryColor,
         ),
-        SizedBox(
-          width: 24.w,
-        ),
+        if (centerWidget != null) centerWidget!,
         InkWell(
           onTap: () {},
           child: ImageIcon(
-            AssetImage(MyAssets.shoppingCart),
-            size: 28.sp,
+            const AssetImage(MyAssets.shoppingCart),
+            size: 36.sp,
             color: MyColors.primaryColor,
           ),
         )

@@ -22,23 +22,7 @@ class ProductListViewBody extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  MyAssets.logo,
-                  color: MyColors.primaryColor,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: ImageIcon(
-                    AssetImage(MyAssets.shoppingCart),
-                    size: 36.sp,
-                    color: MyColors.primaryColor,
-                  ),
-                )
-              ],
-            ),
+            LogoWithShoppingCart(),
             SizedBox(
               height: 24.h,
             ),
@@ -73,6 +57,36 @@ class ProductListViewBody extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class LogoWithShoppingCart extends StatelessWidget {
+  final Widget? centerWidget;
+  const LogoWithShoppingCart({
+    super.key,
+    this.centerWidget,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Image.asset(
+          MyAssets.logo,
+          color: MyColors.primaryColor,
+        ),
+        if (centerWidget != null) centerWidget!,
+        InkWell(
+          onTap: () {},
+          child: ImageIcon(
+            const AssetImage(MyAssets.shoppingCart),
+            size: 36.sp,
+            color: MyColors.primaryColor,
+          ),
+        )
+      ],
     );
   }
 }

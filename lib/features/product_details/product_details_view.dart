@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce/domain/entity/product_entity/product_response_entity.dart';
 import 'package:route_e_commerce/features/product_details/widgets/product_details_view_body.dart';
+import 'package:route_e_commerce/utils/my_assets.dart';
 import 'package:route_e_commerce/utils/my_colors.dart';
 
 class ProductDetailsView extends StatelessWidget {
@@ -26,11 +27,17 @@ class ProductDetailsView extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         actions: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: Icon(Icons.shopping_cart_outlined),
-          ),
+          Padding(
+            padding: EdgeInsets.only(right: 12.w),
+            child: InkWell(
+              onTap: () {},
+              child: ImageIcon(
+                const AssetImage(MyAssets.shoppingCart),
+                size: 36.sp,
+                color: MyColors.primaryColor,
+              ),
+            ),
+          )
         ],
       ),
       body: ProductDetailsViewBody(product: productDetails),

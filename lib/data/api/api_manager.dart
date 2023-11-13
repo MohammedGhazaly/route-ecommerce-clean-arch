@@ -189,6 +189,10 @@ class ApiManager {
           AddToCartResponseDto.fromJson(jsonDecode(response.body));
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return Right<Failures, AddToCartResponseDto>(productResponseModel);
+      } else if (response.statusCode == 401) {
+        return Left<Failures, AddToCartResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
       } else {
         return Left<Failures, AddToCartResponseDto>(
           ServerFailure(errorMessage: productResponseModel.message),
