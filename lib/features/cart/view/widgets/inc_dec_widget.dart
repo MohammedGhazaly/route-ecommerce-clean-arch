@@ -15,7 +15,7 @@ class IncDecWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cartCubit = BlocProvider.of<CartCubit>(context, listen: true);
+    var cartCubit = BlocProvider.of<CartCubit>(context);
     return Container(
       height: 50.h,
       decoration: BoxDecoration(
@@ -45,8 +45,6 @@ class IncDecWidget extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             onPressed: () async {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text("Adding item")));
               await cartCubit.addToCart(
                   productId: getUserCartProductsEntity.product!.sId!);
               await cartCubit.getUserCart();

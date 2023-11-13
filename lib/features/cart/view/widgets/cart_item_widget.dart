@@ -16,9 +16,7 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cartCubit = BlocProvider.of<CartCubit>(
-      context,
-    );
+    var cartCubit = BlocProvider.of<CartCubit>(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -62,7 +60,11 @@ class CartItemWidget extends StatelessWidget {
                     ),
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () async {
+                        await cartCubit.removeItem(
+                            productId: getUserCartProductsEntity.product!.sId!);
+                        await cartCubit.getUserCart();
+                      },
                       icon: Icon(
                         Icons.delete_rounded,
                         size: 32.sp,

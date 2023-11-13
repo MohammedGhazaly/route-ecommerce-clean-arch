@@ -52,18 +52,6 @@ class GridViewCardItemBody extends StatelessWidget {
               Image.asset(
                 MyAssets.starIcon,
               ),
-              const Spacer(
-                flex: 1,
-              ),
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                child: Icon(
-                  Icons.add_circle,
-                  size: 32.sp,
-                  color: MyColors.primaryColor,
-                ),
-              )
             ],
           )
         ],

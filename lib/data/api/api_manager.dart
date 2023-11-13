@@ -10,6 +10,7 @@ import "package:route_e_commerce/data/models/response_models/auth_models/login_r
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
 import "package:route_e_commerce/data/models/response_models/cart_models/add_to_cart_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/cart_models/get_user_cart_responseDto.dart";
+import "package:route_e_commerce/data/models/response_models/cart_models/remove_item_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/home_models/category_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/product_models/product_response_dto.dart";
 import "package:route_e_commerce/domain/entity/failures.dart";
@@ -212,6 +213,7 @@ class ApiManager {
       Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.cartEndPoint);
       http.Response response =
           await http.get(url, headers: {"token": token as String});
+
       var productResponseModel =
           GetUserCartResponseDto.fromJson(jsonDecode(response.body));
       if (response.statusCode >= 200 && response.statusCode <= 299) {
@@ -227,6 +229,36 @@ class ApiManager {
       }
     } else {
       return Left<Failures, GetUserCartResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, RemoveItemResponseDto>> removeItem(
+      {required String productId}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      // Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.cartEndPoint);
+      Uri url = Uri.parse(
+          "https://${ApiConstants.baseUrl}/${ApiConstants.cartEndPoint}/$productId");
+      print(url);
+      http.Response response =
+          await http.delete(url, headers: {"token": token as String});
+      var productResponseModel =
+          RemoveItemResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, RemoveItemResponseDto>(productResponseModel);
+      } else if (response.statusCode == 401) {
+        return Left<Failures, RemoveItemResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      } else {
+        return Left<Failures, RemoveItemResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, RemoveItemResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/add_to_cart_response_entity.dart';
 import 'package:route_e_commerce/domain/entity/cart_entity/get_user_cart_entity.dart';
+import 'package:route_e_commerce/domain/entity/cart_entity/remove_item_response_entity.dart';
 import 'package:route_e_commerce/domain/entity/failures.dart';
 import 'package:route_e_commerce/domain/repos/cart_repo/data_source/cart_remote_data_source.dart';
 import 'package:route_e_commerce/domain/repos/cart_repo/repo/cart_remote_repo.dart';
@@ -19,5 +20,11 @@ class CartRepoImpl extends CartRepo {
   @override
   Future<Either<Failures, GetUserCartResponseEntity>> getUserCart() {
     return cartRemoteDataSource.getUserCart();
+  }
+
+  @override
+  Future<Either<Failures, RemoveItemResponseEntity>> removeItem(
+      {required String productId}) {
+    return cartRemoteDataSource.removeItem(productId: productId);
   }
 }

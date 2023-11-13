@@ -22,6 +22,7 @@ import 'package:route_e_commerce/domain/use_cases/get_products_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/get_user_cart_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/login_use_case.dart';
 import 'package:route_e_commerce/domain/use_cases/register_use_case.dart';
+import 'package:route_e_commerce/domain/use_cases/remove_item_use_case.dart';
 
 // Auth Repo Injection
 AuthRepo injectAuthRepo() {
@@ -85,4 +86,8 @@ AddToCartUseCase injectAddToCartUseCase() {
 
 GetUserCartUseCase injectGetUserCartUseCase() {
   return GetUserCartUseCase(cartRepo: injectCartRepo());
+}
+
+RemoveItemUseCase injectRemoveItemUseCase() {
+  return RemoveItemUseCase(cartRepo: injectCartRepo());
 }

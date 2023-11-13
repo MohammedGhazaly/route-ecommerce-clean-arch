@@ -30,6 +30,7 @@ Future<void> main() async {
     providers: [
       BlocProvider<CartCubit>(
           create: (context) => CartCubit(
+              removeItemUseCase: injectRemoveItemUseCase(),
               addToCartUseCase: injectAddToCartUseCase(),
               getUserCartUseCase: injectGetUserCartUseCase())),
     ],

@@ -5,6 +5,7 @@ sealed class CartState {}
 
 final class CartInitial extends CartState {}
 
+// Adding item to cart States
 final class AddItemToCartFailure extends CartState {
   final String errorMessage;
 
@@ -18,6 +19,8 @@ final class CartItemAdded extends CartState {
 
   CartItemAdded({required this.addToCartResponse});
 }
+
+// Getting user cart states
 
 final class UserCartEmpty extends CartState {}
 
@@ -33,4 +36,15 @@ final class UserCartFailure extends CartState {
   final String errorMessage;
 
   UserCartFailure({required this.errorMessage});
+}
+
+// Removing user cart states
+final class RemovingItem extends CartState {}
+
+final class RemoveItemSuccess extends CartState {}
+
+final class RemoveItemFailure extends CartState {
+  final String errorMessage;
+
+  RemoveItemFailure({required this.errorMessage});
 }
