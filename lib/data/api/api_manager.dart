@@ -8,9 +8,11 @@ import "package:route_e_commerce/data/models/request_models/auth_models/login_re
 import 'package:route_e_commerce/data/models/request_models/auth_models/register_request_model.dart';
 import "package:route_e_commerce/data/models/response_models/auth_models/login_responseDto.dart";
 import 'package:route_e_commerce/data/models/response_models/auth_models/register_response_modelDto.dart';
+import "package:route_e_commerce/data/models/response_models/cart_models/add_to_cart_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/home_models/category_responseDto.dart";
 import "package:route_e_commerce/data/models/response_models/product_models/product_response_dto.dart";
 import "package:route_e_commerce/domain/entity/failures.dart";
+import "package:route_e_commerce/utils/shared_pref/shared_pref_utils.dart";
 
 class ApiManager {
   ApiManager._();
@@ -21,6 +23,8 @@ class ApiManager {
     }
     return _instance!;
   }
+
+  var token = SharedPrefUtils.getData("token");
 
   Future<Either<Failures, RegisterResponseDto>> register({
     required String fullName,
@@ -156,7 +160,6 @@ class ApiManager {
       } else {
         url = Uri.https(ApiConstants.baseUrl, ApiConstants.productEndPoint);
       }
-      print(url);
 
       http.Response response = await http.get(url);
       var productResponseModel =
@@ -170,6 +173,29 @@ class ApiManager {
       }
     } else {
       return Left<Failures, ProductResponseDto>(
+          NetworkError(errorMessage: "Check internet connection"));
+    }
+  }
+
+  Future<Either<Failures, AddToCartResponseDto>> addToCart(
+      {required String productId}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.cartEndPoint);
+      http.Response response = await http.post(url,
+          body: {"productId": productId}, headers: {"token": token as String});
+      var productResponseModel =
+          AddToCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return Right<Failures, AddToCartResponseDto>(productResponseModel);
+      } else {
+        return Left<Failures, AddToCartResponseDto>(
+          ServerFailure(errorMessage: productResponseModel.message),
+        );
+      }
+    } else {
+      return Left<Failures, AddToCartResponseDto>(
           NetworkError(errorMessage: "Check internet connection"));
     }
   }
